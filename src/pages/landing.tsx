@@ -8,16 +8,22 @@ import {
   LightMode,
   Stack,
   Text,
-  useColorModeValue,
   Wrap,
   WrapItem,
 } from '@chakra-ui/react';
+import { keyframes } from '@emotion/react';
 import faker from 'faker';
-import Link from 'next/link';
+import NextLink from 'next/link';
 import { createRef, useEffect, useState } from 'react';
-import { AiFillGithub } from 'react-icons/ai';
 
+import Footer from '../components/Footer';
 import { toKebabCase } from '../utils';
+
+const shine = keyframes`
+  to {
+    background-position: 200% center;
+  }
+`;
 
 export default function MyApp() {
   const [celebrities, setCelebrities] = useState([]);
@@ -50,16 +56,16 @@ export default function MyApp() {
 
   return (
     <>
-      <Box mb={20}>
+      <Box>
         <Box
           as="section"
           pt={{ base: '10rem', md: '12rem' }}
           pb={{ base: '0', md: '5rem' }}
         >
           <Container>
-            <Box textAlign="center">
+            <Box textAlign="center" mb="3rem">
               <chakra.h1
-                maxW="16ch"
+                maxW="20ch"
                 mx="auto"
                 fontSize={{ base: '2.25rem', sm: '3rem', lg: '4rem' }}
                 letterSpacing="tighter"
@@ -67,14 +73,18 @@ export default function MyApp() {
                 mb="16px"
                 lineHeight="1.2"
               >
-                Digital autographs, starring your
-                <Box
-                  as="span"
-                  color={useColorModeValue('blue.500', 'blue.300')}
+                Digital autographs, guest starring your{' '}
+                <chakra.span
+                  animation={`${shine} 30s ease-in-out infinite`}
+                  backgroundSize="200% auto"
+                  bgGradient="linear(to-l, #7928CA,#FF0080, #7928CA)"
+                  bgClip="text"
+                  fontSize="6xl"
+                  fontWeight="extrabold"
+                  px="0.5rem"
                 >
-                  {' '}
-                  favorite icons
-                </Box>
+                  favorite icons.
+                </chakra.span>
               </chakra.h1>
 
               <Text
@@ -86,9 +96,7 @@ export default function MyApp() {
               >
                 Some text here about what we bring to celebrities and the
                 fans... Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Aliquid labore dolore sint esse earum id, corrupti, officiis
-                natus magni, quaerat ea quisquam numquam sit ullam deserunt
-                nihil. Facere, ipsum nesciunt?
+                Aliquid labore dolore sint esse earum id, corrupti.
               </Text>
 
               <Stack
@@ -118,9 +126,8 @@ export default function MyApp() {
                   fontSize="1.2rem"
                   href="https://github.com/HashInk"
                   target="__blank"
-                  leftIcon={<AiFillGithub size="1.5em" />}
                 >
-                  GitHub
+                  GitHub 💻
                 </Button>
               </Stack>
             </Box>
@@ -179,20 +186,20 @@ export default function MyApp() {
                   </Box>
                 </Stack>
                 <LightMode>
-                  <Link href="/[profile]" as={`/${celeb.link}`}>
+                  <NextLink href="/[profile]" as={`/${celeb.link}`} passHref>
                     <Button
                       w={{ base: '100%', md: 'auto' }}
                       alignSelf="center"
                       as="a"
                       minW="7rem"
                       colorScheme="blue"
-                      href="#"
+                      href="abc"
                       rel="noopener"
                       target="_blank"
                     >
                       View
                     </Button>
-                  </Link>
+                  </NextLink>
                 </LightMode>
               </Stack>
             ))}
@@ -227,6 +234,7 @@ export default function MyApp() {
           </Container>
         </Box>
       </Box>
+      <Footer />
     </>
   );
 }

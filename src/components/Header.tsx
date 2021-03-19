@@ -10,12 +10,17 @@ import {
 import { useWeb3React } from '@web3-react/core';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { FiGrid, FiLogIn, FiMoon, FiSun, FiUser } from 'react-icons/fi';
+
+import useStore from '../store';
+import { shortenAddress } from '../utils';
 
 export default function Header() {
   const { library, chainId, account } = useWeb3React();
   const router = useRouter();
   const { colorMode, toggleColorMode } = useColorMode();
   const [ENSName, setENSName] = useState('');
+  const { toggleWalletModal } = useStore();
 
   useEffect(() => {
     if (library && account) {
@@ -59,6 +64,50 @@ export default function Header() {
           🔏 HashInk
         </Text>
       </Link>
+      <HStack>
+        <IconButton
+          colorScheme="blue"
+          opacity={0.8}
+          color="white"
+          isRound
+          onClick={toggleColorMode}
+          aria-label="toggle theme"
+          icon={colorMode === 'dark' ? <FiSun /> : <FiMoon />}
+        />
+        <IconButton
+          colorScheme="blue"
+          opacity={0.8}
+          color="white"
+          isRound
+          aria-label="gallery"
+          onClick={() => router.push('/gallery')}
+          icon={<FiGrid />}
+          isDisabled={!account}
+        />
+
+        {/* <Notifications /> */}
+
+        {!account ? (
+          <IconButton
+            isRound
+            colorScheme="blue"
+            color="white"
+            icon={<FiLogIn />}
+            onClick={() => toggleWalletModal()}
+            aria-label="connect"
+          />
+        ) : (
+          <Button
+            opacity={0.8}
+            color="white"
+            colorScheme="blue"
+            leftIcon={<FiUser />}
+            onClick={() => toggleWalletModal()}
+          >
+            {ENSName || `${shortenAddress(account)}`}
+          </Button>
+        )}
+      </HStack>
     </Flex>
   );
 }
