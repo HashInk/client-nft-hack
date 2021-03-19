@@ -6,6 +6,7 @@ import {
   Container,
   Flex,
   Icon,
+  Img,
   ListItem,
   OrderedList,
   Popover,
@@ -100,18 +101,31 @@ export default function Profile() {
       <Box pt={{ base: '10rem', md: '12rem' }} pb={{ base: '0', md: '5rem' }}>
         <Container maxW="container.lg">
           <Box textAlign="center" mb="3rem">
-            <Flex>
-              <Avatar size="2xl" name={celebrity.name} src={celebrity.image} />
-              <VStack align="flex-start" ml="1rem">
+            <Flex justify="space-between">
+              <Avatar
+                h="15rem"
+                w="15rem"
+                name={celebrity.name}
+                src={celebrity.image}
+                boxShadow="md"
+              />
+
+              <Flex
+                justify="flex-start"
+                align="flex-start"
+                direction="column"
+                textAlign="left"
+                ml="1rem"
+                lineHeight="3rem"
+              >
                 <Text fontSize="3rem" fontWeight="700">
                   {celebrity.name}
                 </Text>
 
                 <Text fontSize="1.5rem" fontWeight="400" color="gray" mt="0">
-                  {celebrity.background}
+                  {celebrity.background} - {celebrity.price}
                 </Text>
-                <Text>{celebrity.price}</Text>
-              </VStack>
+              </Flex>
               <StyledBox
                 position="relative"
                 h="250px"
@@ -128,8 +142,14 @@ export default function Profile() {
               </StyledBox>
             </Flex>
 
-            <Box boxShadow="md" p="6" rounded="md" bgColor="gray">
-              <StatGroup color="black">
+            <Box
+              boxShadow="md"
+              p="6"
+              rounded="md"
+              bgGradient="linear(to-l, #7928CA, #FF0080)"
+              my="2rem"
+            >
+              <StatGroup color="white">
                 <Stat>
                   <StatLabel>Responds in</StatLabel>
                   <StatNumber alignItems="center" justifyContent="center">
@@ -166,7 +186,7 @@ export default function Profile() {
 
               <Popover>
                 <PopoverTrigger>
-                  <Button size="lg" variant="ghost">
+                  <Button size="lg" variant="outline" colorScheme="blue">
                     How does this work?!
                   </Button>
                 </PopoverTrigger>

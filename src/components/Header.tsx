@@ -67,6 +67,16 @@ export default function Header() {
         </Text>
       </Link>
       <HStack>
+        {/* <Button
+          colorScheme="blue"
+          opacity={0.8}
+          color="white"
+          isRound
+          aria-label="gallery"
+          onClick={() => router.push('/celebrity')}
+        >
+          Celeb POV
+        </Button> */}
         <IconButton
           colorScheme="blue"
           opacity={0.8}
