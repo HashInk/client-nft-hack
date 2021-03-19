@@ -67,56 +67,48 @@ export default function Header() {
         </Text>
       </Link>
       <HStack>
-        <Tooltip label="theme" aria-label="theme">
-          <IconButton
-            colorScheme="blue"
-            opacity={0.8}
-            color="white"
-            isRound
-            onClick={toggleColorMode}
-            aria-label="toggle theme"
-            icon={colorMode === 'dark' ? <FiSun /> : <FiMoon />}
-          />
-        </Tooltip>
-        <Tooltip label="gallery" aria-label="gallery">
-          <IconButton
-            colorScheme="blue"
-            opacity={0.8}
-            color="white"
-            isRound
-            aria-label="gallery"
-            onClick={() => router.push('/gallery')}
-            icon={<FiGrid />}
-            isDisabled={!account}
-          />
-        </Tooltip>
+        <IconButton
+          colorScheme="blue"
+          opacity={0.8}
+          color="white"
+          isRound
+          onClick={toggleColorMode}
+          aria-label="toggle theme"
+          icon={colorMode === 'dark' ? <FiSun /> : <FiMoon />}
+        />
+        <IconButton
+          colorScheme="blue"
+          opacity={0.8}
+          color="white"
+          isRound
+          aria-label="gallery"
+          onClick={() => router.push('/gallery')}
+          icon={<FiGrid />}
+          isDisabled={!account}
+        />
 
         <Notifications />
 
         {!account ? (
-          <Tooltip label="connect" aria-label="connect">
-            <IconButton
-              isRound
-              opacity={0.8}
-              colorScheme="blue"
-              color="white"
-              icon={<FiLogIn />}
-              onClick={() => toggleWalletModal()}
-              aria-label="connect"
-            />
-          </Tooltip>
+          <IconButton
+            isRound
+            opacity={0.8}
+            colorScheme="blue"
+            color="white"
+            icon={<FiLogIn />}
+            onClick={() => toggleWalletModal()}
+            aria-label="connect"
+          />
         ) : (
-          <Tooltip label="account" aria-label="account">
-            <Button
-              opacity={0.8}
-              color="white"
-              colorScheme="blue"
-              leftIcon={<FiUser />}
-              onClick={() => toggleWalletModal()}
-            >
-              {ENSName || `${shortenAddress(account)}`}
-            </Button>
-          </Tooltip>
+          <Button
+            opacity={0.8}
+            color="white"
+            colorScheme="blue"
+            leftIcon={<FiUser />}
+            onClick={() => toggleWalletModal()}
+          >
+            {ENSName || `${shortenAddress(account)}`}
+          </Button>
         )}
       </HStack>
     </Flex>

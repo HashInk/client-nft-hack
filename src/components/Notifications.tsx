@@ -18,16 +18,14 @@ export default function Notifications() {
   return (
     <Popover placement="bottom">
       <PopoverTrigger>
-        <Tooltip label="notifications" aria-label="notifications">
-          <IconButton
-            isRound
-            colorScheme="blue"
-            opacity={0.8}
-            color="white"
-            aria-label="notifications"
-            icon={<FiBell aria-label="notifications" />}
-          />
-        </Tooltip>
+        <IconButton
+          isRound
+          colorScheme="blue"
+          opacity={0.8}
+          color="white"
+          aria-label="notifications"
+          icon={<FiBell aria-label="notifications" />}
+        />
       </PopoverTrigger>
       <PopoverContent bgColor="background.100">
         <PopoverCloseButton />
