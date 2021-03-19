@@ -1,5 +1,12 @@
-import { Button } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
-export default function Home() {
-  return <Button>Click</Button>;
+export default function Redirect(): null {
+  const { replace } = useRouter();
+
+  useEffect(() => {
+    replace('/landing');
+  }, [replace]);
+
+  return null;
 }

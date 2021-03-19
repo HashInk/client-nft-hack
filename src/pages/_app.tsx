@@ -1,17 +1,45 @@
 import { ChakraProvider } from '@chakra-ui/react';
-import { AppProps } from 'next/app';
+import { Global } from '@emotion/react';
+import { Web3Provider } from '@ethersproject/providers';
+import { useWeb3React, Web3ReactProvider } from '@web3-react/core';
+import { NextComponentType } from 'next';
+import NextApp from 'next/app';
 import Head from 'next/head';
 
-export default function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <ChakraProvider>
-      <Head>
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
-        />
-      </Head>
-      <Component {...pageProps} />
-    </ChakraProvider>
-  );
+import Error from '../components/Error';
+import Layout from '../components/Layout';
+import theme, { GlobalStyles } from '../theme';
+
+function FunctionalApp({
+  Component,
+}: {
+  Component: NextComponentType;
+}): JSX.Element | null {
+  const { error } = useWeb3React();
+
+  return <Layout>{error ? <Error /> : <Component />}</Layout>;
+}
+
+function getLibrary(provider: any): Web3Provider {
+  return new Web3Provider(provider);
+}
+
+export default class App extends NextApp {
+  render(): JSX.Element {
+    const { Component } = this.props;
+
+    return (
+      <>
+        <Head>
+          <title key="title">HashInk | NFT Autographs</title>
+        </Head>
+        <Web3ReactProvider getLibrary={getLibrary}>
+          <ChakraProvider theme={theme}>
+            <Global styles={GlobalStyles} />
+            <FunctionalApp Component={Component} />
+          </ChakraProvider>
+        </Web3ReactProvider>
+      </>
+    );
+  }
 }
