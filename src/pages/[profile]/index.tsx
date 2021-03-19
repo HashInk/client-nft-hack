@@ -54,16 +54,16 @@ const StyledBox = styled(Center)`
     left: -2px;
     background: linear-gradient(
       45deg,
-      #fb0094,
-      #0000ff,
-      #0f0,
-      #ff0,
-      #f00,
-      #fb0094,
-      #0000ff,
-      #0f0,
-      #ff0,
-      #f00
+      #f72585,
+      #b5179e,
+      #7209b7,
+      #560bad,
+      #480ca8,
+      #3a0ca3,
+      #3f37c9,
+      #4361ee,
+      #4895ef,
+      #4cc9f0
     );
     background-size: 400%;
     width: calc(100% + 4px);
