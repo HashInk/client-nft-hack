@@ -5,6 +5,7 @@ import {
   IconButton,
   Link,
   Text,
+  Tooltip,
   useColorMode,
 } from '@chakra-ui/react';
 import { useWeb3React } from '@web3-react/core';
@@ -14,6 +15,7 @@ import { FiGrid, FiLogIn, FiMoon, FiSun, FiUser } from 'react-icons/fi';
 
 import useStore from '../store';
 import { shortenAddress } from '../utils';
+import Notifications from './Notifications';
 
 export default function Header() {
   const { library, chainId, account } = useWeb3React();
@@ -65,48 +67,56 @@ export default function Header() {
         </Text>
       </Link>
       <HStack>
-        <IconButton
-          colorScheme="blue"
-          opacity={0.8}
-          color="white"
-          isRound
-          onClick={toggleColorMode}
-          aria-label="toggle theme"
-          icon={colorMode === 'dark' ? <FiSun /> : <FiMoon />}
-        />
-        <IconButton
-          colorScheme="blue"
-          opacity={0.8}
-          color="white"
-          isRound
-          aria-label="gallery"
-          onClick={() => router.push('/gallery')}
-          icon={<FiGrid />}
-          isDisabled={!account}
-        />
+        <Tooltip label="theme" aria-label="theme">
+          <IconButton
+            colorScheme="blue"
+            opacity={0.8}
+            color="white"
+            isRound
+            onClick={toggleColorMode}
+            aria-label="toggle theme"
+            icon={colorMode === 'dark' ? <FiSun /> : <FiMoon />}
+          />
+        </Tooltip>
+        <Tooltip label="gallery" aria-label="gallery">
+          <IconButton
+            colorScheme="blue"
+            opacity={0.8}
+            color="white"
+            isRound
+            aria-label="gallery"
+            onClick={() => router.push('/gallery')}
+            icon={<FiGrid />}
+            isDisabled={!account}
+          />
+        </Tooltip>
 
-        {/* <Notifications /> */}
+        <Notifications />
 
         {!account ? (
-          <IconButton
-            isRound
-            opacity={0.8}
-            colorScheme="blue"
-            color="white"
-            icon={<FiLogIn />}
-            onClick={() => toggleWalletModal()}
-            aria-label="connect"
-          />
+          <Tooltip label="connect" aria-label="connect">
+            <IconButton
+              isRound
+              opacity={0.8}
+              colorScheme="blue"
+              color="white"
+              icon={<FiLogIn />}
+              onClick={() => toggleWalletModal()}
+              aria-label="connect"
+            />
+          </Tooltip>
         ) : (
-          <Button
-            opacity={0.8}
-            color="white"
-            colorScheme="blue"
-            leftIcon={<FiUser />}
-            onClick={() => toggleWalletModal()}
-          >
-            {ENSName || `${shortenAddress(account)}`}
-          </Button>
+          <Tooltip label="account" aria-label="account">
+            <Button
+              opacity={0.8}
+              color="white"
+              colorScheme="blue"
+              leftIcon={<FiUser />}
+              onClick={() => toggleWalletModal()}
+            >
+              {ENSName || `${shortenAddress(account)}`}
+            </Button>
+          </Tooltip>
         )}
       </HStack>
     </Flex>

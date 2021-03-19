@@ -90,7 +90,7 @@ export default function UserGallery() {
       <Container py="120px" maxW="1280px">
         <Box maxW="760px" mx="auto" textAlign="center" mb="56px">
           <chakra.h2 mb="5" fontSize="3.5rem" fontWeight="700">
-            My autograph gallery
+            My autograph gallery 🖼
           </chakra.h2>
           <chakra.p opacity={0.7} fontSize="1.125rem">
             View and share all of your recently collected signatures

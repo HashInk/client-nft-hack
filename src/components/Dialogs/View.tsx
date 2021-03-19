@@ -2,7 +2,6 @@ import { Button, Img } from '@chakra-ui/react';
 import { useWeb3React } from '@web3-react/core';
 import { FaTwitter } from 'react-icons/fa';
 
-import getIcon from '../../assets/icons';
 import useStore from '../../store';
 import { getEtherscanLink } from '../../utils';
 import Dialog from './Dialog';
