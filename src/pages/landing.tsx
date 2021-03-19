@@ -8,6 +8,7 @@ import {
   LightMode,
   Stack,
   Text,
+  Tooltip,
   Wrap,
   WrapItem,
 } from '@chakra-ui/react';
@@ -25,7 +26,7 @@ const shine = keyframes`
   }
 `;
 
-export default function MyApp() {
+export default function Landing() {
   const [celebrities, setCelebrities] = useState([]);
 
   useEffect(() => {
@@ -216,17 +217,31 @@ export default function MyApp() {
               <Wrap justify="center">
                 {celebrities.map((celeb, i) => (
                   <WrapItem key={i}>
-                    <Avatar name={celeb.name} src={celeb.image} size="lg" />
+                    <Tooltip label="Actor X" aria-label="Actor X" color="white">
+                      <Avatar name={celeb.name} src={celeb.image} size="lg" />
+                    </Tooltip>
                   </WrapItem>
                 ))}
                 {celebrities.map((celeb, i) => (
                   <WrapItem key={i}>
-                    <Avatar name={celeb.name} src={celeb.image} size="lg" />
+                    <Tooltip
+                      label="Actress Y"
+                      aria-label="Actress Y"
+                      color="white"
+                    >
+                      <Avatar name={celeb.name} src={celeb.image} size="lg" />
+                    </Tooltip>
                   </WrapItem>
                 ))}
                 {celebrities.map((celeb, i) => (
                   <WrapItem key={i}>
-                    <Avatar name={celeb.name} src={celeb.image} size="lg" />
+                    <Tooltip
+                      label="Musician Z"
+                      aria-label="Musician Z"
+                      color="white"
+                    >
+                      <Avatar name={celeb.name} src={celeb.image} size="lg" />
+                    </Tooltip>
                   </WrapItem>
                 ))}
               </Wrap>

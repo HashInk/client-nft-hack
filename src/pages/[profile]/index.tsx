@@ -6,7 +6,6 @@ import {
   Container,
   Flex,
   Icon,
-  Img,
   ListItem,
   OrderedList,
   Popover,

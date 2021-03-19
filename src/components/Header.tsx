@@ -90,6 +90,7 @@ export default function Header() {
         {!account ? (
           <IconButton
             isRound
+            opacity={0.8}
             colorScheme="blue"
             color="white"
             icon={<FiLogIn />}
