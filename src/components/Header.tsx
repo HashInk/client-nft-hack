@@ -61,8 +61,11 @@ export default function Header() {
       as="header"
       borderTop="6px solid #e6007a"
     >
-      <Link onClick={() => router.push('/')}>
-        <Text fontSize="2rem" fontWeight="2rem">
+      <Link
+        onClick={() => router.push('/')}
+        _hover={{ textDecoration: 'none' }}
+      >
+        <Text fontSize="2rem" fontWeight="600" color="black">
           🔏 HashInk
         </Text>
       </Link>

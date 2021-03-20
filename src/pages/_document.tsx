@@ -32,18 +32,7 @@ export default class extends Document {
             href="/icons/apple-touch-icon.png"
           />
           <link rel="manifest" href="/manifest.json" />
-          <link rel="shortcut icon" href="/icons/favicon.ico" />
-          <style>{`
-            html, body, #__next {
-              height: 100%;
-            }
-            #__next {
-              margin: 0 auto;
-            }
-            h1 {
-              text-align: center;
-            }
-            `}</style>
+          <link rel="shortcut icon" href="/favicon.ico" />
         </Head>
         <body>
           <Main />

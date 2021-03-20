@@ -77,7 +77,6 @@ export const GlobalStyles = css`
   }
 
   html {
-    /* overflow: hidden; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

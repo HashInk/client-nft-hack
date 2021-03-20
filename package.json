@@ -21,6 +21,7 @@
     "ethers": "^5.0.32",
     "faker": "^5.4.0",
     "framer-motion": "^3.10.5",
+    "inter-ui": "^3.15.1",
     "next": "10.0.9",
     "next-pwa": "^5.0.6",
     "react": "17.0.1",

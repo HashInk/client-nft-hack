@@ -4612,6 +4612,11 @@ inherits@2.0.3:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
   integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
 
+inter-ui@^3.15.1:
+  version "3.15.1"
+  resolved "https://registry.yarnpkg.com/inter-ui/-/inter-ui-3.15.1.tgz#0456db99290ab970684d6a83b2b9d2abd43bf43b"
+  integrity sha512-yMWNvcMdVUpQ/gj+NhZBRhq/CTA84u09Sascx+hXyNM/G7PmVjE3zqZKNWQluHSxsDGeBB0plWwOZpsFPV2J8w==
+
 internal-slot@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/internal-slot/-/internal-slot-1.0.3.tgz#7347e307deeea2faac2ac6205d4bc7d34967f59c"
