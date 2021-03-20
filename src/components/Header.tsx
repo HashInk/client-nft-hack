@@ -5,7 +5,6 @@ import {
   IconButton,
   Link,
   Text,
-  Tooltip,
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
@@ -23,7 +22,7 @@ export default function Header() {
   const router = useRouter();
   const { colorMode, toggleColorMode } = useColorMode();
   const [ENSName, setENSName] = useState('');
-  const { toggleWalletModal } = useStore();
+  const { toggleWalletModal, toggleEnrollModal } = useStore();
 
   useEffect(() => {
     if (library && account) {
@@ -123,6 +122,14 @@ export default function Header() {
             {ENSName || `${shortenAddress(account)}`}
           </Button>
         )}
+        <Button
+          display={account ? 'none' : 'block'}
+          onClick={() => toggleEnrollModal()}
+          color="white"
+          colorScheme="blue"
+        >
+          Enroll
+        </Button>
       </HStack>
     </Flex>
   );
