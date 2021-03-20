@@ -36,13 +36,11 @@ export default function Enroll() {
   });
 
   function onEnroll() {
-    console.log('onEnroll:', onEnroll);
-    console.log(enrolledDetails);
-    // alert(enrolledDetails);
+    console.log('enrolledDetails:', enrolledDetails);
   }
 
   function onSignIn() {
-    alert(signInDetails);
+    console.log('signInDetails:', signInDetails);
   }
 
   return (
@@ -73,7 +71,7 @@ export default function Enroll() {
                   }
                 />
               </FormControl>
-              <FormControl id="handle" isRequired>
+              <FormControl id="email" isRequired>
                 <FormLabel>Email</FormLabel>
                 <Input
                   type="email"
@@ -82,7 +80,7 @@ export default function Enroll() {
                   onChange={(e: any) =>
                     setEnrolledDetails({
                       ...enrolledDetails,
-                      name: e.target.value,
+                      email: e.target.value,
                     })
                   }
                 />
@@ -92,16 +90,16 @@ export default function Enroll() {
                 <Input
                   type="text"
                   placeholder="@jack"
-                  value={enrolledDetails.email}
+                  value={enrolledDetails.handle}
                   onChange={(e: any) =>
                     setEnrolledDetails({
                       ...enrolledDetails,
-                      name: e.target.value,
+                      handle: e.target.value,
                     })
                   }
                 />
               </FormControl>
-              <FormControl id="handle" isRequired>
+              <FormControl id="followers" isRequired>
                 <FormLabel>Number of followers</FormLabel>
                 <Input
                   type="text"
@@ -115,11 +113,21 @@ export default function Enroll() {
                   }
                 />
               </FormControl>
-              <FormControl id="handle" isRequired>
+              <FormControl id="profession" isRequired>
                 <FormLabel>Profession</FormLabel>
-                <Input type="text" placeholder="Actor, Star of Show..." />
+                <Input
+                  type="text"
+                  placeholder="Actor, Star of Show..."
+                  value={enrolledDetails.profession}
+                  onChange={(e: any) =>
+                    setEnrolledDetails({
+                      ...enrolledDetails,
+                      profession: e.target.value,
+                    })
+                  }
+                />
               </FormControl>
-              <FormControl id="handle" isRequired>
+              <FormControl id="rate" isRequired>
                 <FormLabel>Starting rate</FormLabel>
                 <InputGroup>
                   <InputLeftAddon
@@ -128,7 +136,17 @@ export default function Enroll() {
                     pointerEvents="none"
                     color="white"
                   />
-                  <Input type="number" placeholder="200" />
+                  <Input
+                    type="number"
+                    placeholder="200"
+                    alue={enrolledDetails.startingRate}
+                    onChange={(e: any) =>
+                      setEnrolledDetails({
+                        ...enrolledDetails,
+                        startingRate: e.target.value,
+                      })
+                    }
+                  />
                 </InputGroup>
               </FormControl>
               <Button w="100%" colorScheme="blue" onClick={() => onEnroll()}>
@@ -140,11 +158,31 @@ export default function Enroll() {
             <VStack>
               <FormControl id="email">
                 <FormLabel>Email</FormLabel>
-                <Input type="email" placeholder="john@gmail.com" />
+                <Input
+                  type="email"
+                  placeholder="john@gmail.com"
+                  value={signInDetails.email}
+                  onChange={(e: any) =>
+                    setSignInDetails({
+                      ...signInDetails,
+                      email: e.target.value,
+                    })
+                  }
+                />
               </FormControl>
               <FormControl id="email">
                 <FormLabel>Password</FormLabel>
-                <Input type="text" placeholder="********" />
+                <Input
+                  type="text"
+                  placeholder="********"
+                  value={signInDetails.password}
+                  onChange={(e: any) =>
+                    setSignInDetails({
+                      ...signInDetails,
+                      password: e.target.value,
+                    })
+                  }
+                />
               </FormControl>
               <Button w="100%" colorScheme="blue" onClick={() => onSignIn()}>
                 Sign in
