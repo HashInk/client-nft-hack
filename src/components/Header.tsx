@@ -58,7 +58,7 @@ export default function Header() {
       w="100%"
       boxShadow="rgba(0, 0, 0, 0.15) 0px 2px 8px"
       as="header"
-      borderTop={useColorModeValue('6px solid #e6007a', '6px solid #2f54eb')}
+      borderTop="6px solid #e6007a"
       bgColor={useColorModeValue('white', '#e6007a')}
     >
       <Link
