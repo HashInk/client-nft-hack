@@ -22,18 +22,27 @@ function FunctionalApp({
   Component: NextComponentType;
 }): JSX.Element | null {
   const [painted, setPainted] = useState(false);
+  console.log('painted:', painted);
   useIsomorphicLayoutEffect(() => {
     setPainted(true);
   }, []);
   const { error, chainId } = useWeb3React();
+  console.log('chainId:', chainId);
+  console.log('error:', error);
   const requiredChainId = process.env.REQUIRED_CHAIN_ID;
+  console.log('requiredChainId:', requiredChainId);
 
   return !painted ? null : (
     <Layout>
       {error ? (
         <Error />
       ) : typeof requiredChainId === 'number' && chainId !== requiredChainId ? (
-        <Flex flexGrow={1} alignItems="center" justifyContent="center">
+        <Flex
+          flexGrow={1}
+          alignItems="center"
+          justifyContent="center"
+          pt="5rem"
+        >
           <VStack alignItems="center">
             <Text fontSize="1.5rem">
               Please connect to the {requiredChainId === 1 ? 'Ethereum' : ''}{' '}
@@ -41,6 +50,7 @@ function FunctionalApp({
               {requiredChainId !== 1 ? ' testnet' : ''}.
             </Text>
           </VStack>
+          {console.log('here')}
         </Flex>
       ) : (
         <Component />
