@@ -11,7 +11,6 @@ import {
   NumberInputStepper,
   Select,
   Text,
-  VStack,
 } from '@chakra-ui/react';
 import { ChangeEvent, useRef, useState } from 'react';
 import { FiRotateCcw, FiX } from 'react-icons/fi';
