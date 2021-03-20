@@ -4,16 +4,17 @@ import {
   ButtonGroup,
   HStack,
   IconButton,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
   Select,
   Text,
+  useToast,
 } from '@chakra-ui/react';
 import pinataSDK from '@pinata/sdk';
 import getConfig from 'next/config';
+
+import AutographRequest from '../../abis/AutographRequestContract.json';
+import { useContract } from '../../hooks';
+import { addresses } from '../../utils/addresses';
+import { JustinsAccount } from '../../utils/constants';
 const { publicRuntimeConfig } = getConfig();
 
 import axios from 'axios';
@@ -33,6 +34,8 @@ export default function Sign() {
     from: 'John Doe',
     details: 'Can I get a simple autograph?',
   };
+  const toast = useToast();
+
   // const pinata = pinataSDK(
   //   process.env.PINATA_API_KEY,
   //   process.env.PINATA_API_SECRET,
@@ -49,12 +52,16 @@ export default function Sign() {
   //     console.log(err);
   //   });
 
+  const contract = useContract(
+    addresses.autographRequest,
+    AutographRequest.abi,
+  );
+
   const sigRef = useRef(null);
 
   const [imageURL, setImageURL] = useState(null);
 
   const [penColor, setPenColor] = useState('black');
-  const [penSize, setPenSize] = useState(16);
 
   function onClickUndo() {
     const data = sigRef.current.toData();
@@ -67,30 +74,52 @@ export default function Sign() {
   let base64SignatureImage = '';
 
   async function onSend(event) {
+    try {
+      const tx = await contract.signRequest();
+      await tx.wait();
+      toast({
+        title: 'Sent',
+        description: 'Autograph has been successfully minted',
+        status: 'success',
+        variant: 'subtle',
+        isClosable: true,
+      });
+      // cookie.remove('token');
+      // cookie.set('token', 'ABC', { expires: 1 / 24 });
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: 'Signature failed',
+        description: 'Please try again',
+        status: 'error',
+        variant: 'subtle',
+        isClosable: true,
+      });
+    }
     // toggleSignModal();
-    event.preventDefault();
-    let signature = null;
+    // event.preventDefault();
+    // let signature = null;
 
     //@ts-ignore
-    if (sigRef.current && !sigRef.current.isEmpty()) {
-      signature = {
-        //@ts-ignore
-        data: sigRef.current.toDataURL().replace('data:image/png;base64,', ''),
-        type: 'image/jpeg',
-        name: 'photo.jpg',
-      };
+    // if (sigRef.current && !sigRef.current.isEmpty()) {
+    //   signature = {
+    //     //@ts-ignore
+    //     data: sigRef.current.toDataURL().replace('data:image/png;base64,', ''),
+    //     type: 'image/jpeg',
+    //     name: 'photo.jpg',
+    //   };
 
-      console.log('signature:', signature);
-      //@ts-ignore
-      if (sigRef.current && !sigRef.current.isEmpty()) {
-        //@ts-ignore
-        base64SignatureImage = sigRef.current
-          ?.getTrimmedCanvas()
-          .toDataURL('image/png');
+    //   console.log('signature:', signature);
+    //   //@ts-ignore
+    //   if (sigRef.current && !sigRef.current.isEmpty()) {
+    //     //@ts-ignore
+    //     base64SignatureImage = sigRef.current
+    //       ?.getTrimmedCanvas()
+    //       .toDataURL('image/png');
 
-        console.log('base64SignatureImage:', base64SignatureImage);
-      }
-    }
+    //     console.log('base64SignatureImage:', base64SignatureImage);
+    //   }
+    // }
   }
 
   return (
@@ -163,20 +192,6 @@ export default function Sign() {
             <option value="white">⚪️ White</option>
           </Select>
 
-          <NumberInput
-            step={1}
-            defaultValue={16}
-            min={1}
-            max={30}
-            onChange={(penSize) => setPenSize(parseInt(penSize))}
-            value={penSize}
-          >
-            <NumberInputField />
-            <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
-            </NumberInputStepper>
-          </NumberInput>
           <ButtonGroup isAttached>
             <IconButton
               onClick={() => onClickUndo()}

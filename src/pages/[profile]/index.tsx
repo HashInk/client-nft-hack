@@ -124,7 +124,7 @@ export default function Profile() {
                   </Text>
 
                   <Text fontSize="1.5rem" fontWeight="400" color="gray" mt="0">
-                    {celebrity.background} - {celebrity.price}
+                    {celebrity.background} - ${celebrity.price}
                   </Text>
                 </Flex>
               </Flex>

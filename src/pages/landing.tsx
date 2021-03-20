@@ -263,7 +263,13 @@ export default function Landing() {
                       aria-label={celeb.name}
                       color="white"
                     >
-                      <Avatar name={celeb.name} src={celeb.image} size="lg" />
+                      <Avatar
+                        name={celeb.name}
+                        src={celeb.image}
+                        size="lg"
+                        bgColor="pink.500"
+                        color="white"
+                      />
                     </Tooltip>
                   </WrapItem>
                 ))}

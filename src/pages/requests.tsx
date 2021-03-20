@@ -8,16 +8,37 @@ import {
   GridItem,
   Text,
 } from '@chakra-ui/react';
+import Cookies from 'cookies';
 import faker from 'faker';
 import { useEffect, useState } from 'react';
 
-import withPrivateRoute from '../../components/withPrivateRoute';
-import useStore from '../../store';
-import { toKebabCase } from '../../utils';
+import AutographRequest from '../abis/AutographRequestContract.json';
+import withPrivateRoute from '../components/withPrivateRoute';
+import { useContract } from '../hooks';
+import useStore from '../store';
+import { toKebabCase } from '../utils';
+import { addresses } from '../utils/addresses';
 
-function Profile() {
+export default function Requests({ token }: { token: any }) {
   const { toggleSignModal } = useStore();
   const [celebs, setCelebs] = useState([]);
+
+  const contract = useContract(
+    addresses.autographRequest,
+    AutographRequest.abi,
+  );
+
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       console.log('contract:', contract);
+  //       const value = await contract.getRequest(0);
+  //       console.log('value:', value);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   })();
+  // }, [contract]);
 
   useEffect(() => {
     const newName = faker.name.findName();
@@ -64,9 +85,13 @@ function Profile() {
   );
 }
 
-Profile.getInitialProps = async (props) => {
-  console.info('##### Congratulations! You are authorized! ######', props);
-  return {};
-};
+export function getServerSideProps({ req, res }) {
+  return { props: { token: req.cookies.token || '' } };
+}
 
-export default withPrivateRoute(Profile);
+// Profile.getInitialProps = async (props) => {
+//   console.info('##### Congratulations! You are authorized! ######', props);
+//   return {};
+// };
+
+// export default withPrivateRoute(Profile);

@@ -9,7 +9,6 @@ import {
   useToast,
   VStack,
 } from '@chakra-ui/react';
-import { BigNumber, utils } from 'ethers';
 import { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
@@ -17,9 +16,10 @@ import AutographRequest from '../../abis/AutographRequestContract.json';
 import { useContract } from '../../hooks';
 import useStore from '../../store';
 import { addresses } from '../../utils/addresses';
+import { JustinsAccount } from '../../utils/constants';
 import Dialog from './Dialog';
 
-export default function Request() {
+export default function Request({ token }: { token: any }) {
   const { requestModalIsOpen, toggleRequestModal } = useStore();
   const [files, setFiles] = useState([]);
   const [requestForm, setRequestForm] = useState({
@@ -55,17 +55,15 @@ export default function Request() {
   );
 
   async function onSend() {
-    console.log('contract:', contract);
     try {
-      const tx = await contract.createRequest(
-        '0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC',
-        {
-          // gasLimit: 21000,
-          value: '100000000000000000',
-        },
-      );
+      console.log('contract:', contract);
+
+      const tx = await contract.createRequest(JustinsAccount, {
+        gasLimit: 210000,
+        value: '100000000000000000',
+      });
       const res = await tx.wait();
-      console.log('res:', res);
+      console.log('tx:', tx);
       toast({
         title: 'Request sent',
         description: 'Autograph pending...',
@@ -73,6 +71,8 @@ export default function Request() {
         variant: 'subtle',
         isClosable: true,
       });
+      // cookie.remove('token');
+      // cookie.set('token', 'ABC', { expires: 1 / 24 });
     } catch (error) {
       console.error(error);
       toast({
@@ -83,8 +83,35 @@ export default function Request() {
         isClosable: true,
       });
     }
+    // cookie.set('requestForm.to', requestForm.to, { expires: 1 / 24 });
+    // cookie.set('requestForm.message', requestForm.message, { expires: 1 / 24 });
+
     toggleRequestModal();
   }
+
+  // async function onSend() {
+  //   console.log('contract:', contract);
+  //   try {
+
+  //     toast({
+  //       title: 'Request sent',
+  //       description: 'Autograph pending...',
+  //       status: 'success',
+  //       variant: 'subtle',
+  //       isClosable: true,
+  //     });
+  //   } catch (error) {
+  //     console.error(error);
+  //     toast({
+  //       title: 'Request failed',
+  //       description: "Please",
+  //       status: 'error',
+  //       variant: 'subtle',
+  //       isClosable: true,
+  //     });
+  //   }
+  //   // toggleRequestModal();
+  // }
   return (
     <Dialog
       isOpen={requestModalIsOpen}

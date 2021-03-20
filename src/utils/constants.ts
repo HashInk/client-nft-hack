@@ -9,7 +9,7 @@ export const hardCodedCelebs = [
   },
   {
     name: faker.name.findName(),
-    image: '/celebs/.jpeg',
+    image: '',
     link: '',
     price: 0,
     profession: '',
@@ -52,7 +52,7 @@ export const hardCodedCelebs = [
   },
   {
     name: faker.name.findName(),
-    image: '/celebs/.jpeg',
+    image: '',
     link: '',
     price: 0,
     profession: '',
@@ -67,14 +67,14 @@ export const hardCodedCelebs = [
   },
   {
     name: faker.name.findName(),
-    image: '/celebs/.jpeg',
+    image: '',
     link: '',
     price: 0,
     profession: '',
   },
   {
     name: faker.name.findName(),
-    image: '/celebs/.jpeg',
+    image: '',
     link: '',
     price: 0,
     profession: '',
@@ -96,21 +96,21 @@ export const hardCodedCelebs = [
 
   {
     name: faker.name.findName(),
-    image: '/celebs/.jpeg',
+    image: '',
     link: '',
     price: 0,
     profession: '',
   },
   {
     name: faker.name.findName(),
-    image: '/celebs/.jpeg',
+    image: '',
     link: '',
     price: 0,
     profession: '',
   },
   {
     name: faker.name.findName(),
-    image: '/celebs/.jpeg',
+    image: '',
     link: '',
     price: 0,
     profession: '',
@@ -131,7 +131,7 @@ export const hardCodedCelebs = [
   },
   {
     name: faker.name.findName(),
-    image: '/celebs/.jpeg',
+    image: '',
     link: '',
     price: 0,
     profession: '',
@@ -144,3 +144,5 @@ export const hardCodedCelebs = [
     profession: '',
   },
 ];
+
+export const JustinsAccount = '0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC';
