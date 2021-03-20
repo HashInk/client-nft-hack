@@ -25,7 +25,7 @@ export default function Sign() {
     albumCover:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Ethereum-icon-purple.svg/440px-Ethereum-icon-purple.svg.png',
     from: 'John Doe',
-    details: 'Can I get a happy birthday autograph?',
+    details: 'Can I get a simple autograph?',
   };
 
   function onSend() {
