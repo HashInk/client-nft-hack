@@ -25,22 +25,8 @@ function Profile() {
     );
   }, []);
 
-  const celebrity = {
-    image:
-      'https://images.immediate.co.uk/production/volatile/sites/3/2018/08/Simpsons_SO28_Gallery_11-fb0b632.jpg?quality=90&resize=620,413',
-    name: 'Joe Schmoe',
-    price: 100,
-    autograph:
-      'https://www.instantautographs.com/assets/ia-autograph-ddb0d9e55cf90a6d191a329322c6808d8bc991510b6f7902e377f368f962c8bb.png',
-    responseTime: '1 day',
-    numberOfReviews: 10,
-    rating: 4.9,
-    fans: 30000,
-    isAccepting: false,
-  };
-
   return (
-    <Container maxW="container.lg">
+    <Container maxW="container.lg" mt="5rem">
       <Grid templateColumns="repeat(1, 1fr)" gap={2}>
         {celebs.map((celeb: any, key: number) => (
           <GridItem w="100%" key={key}>
@@ -52,7 +38,7 @@ function Profile() {
               onClick={toggleSignModal}
               cursor="pointer"
             >
-              Sign
+              request
             </Box>
           </GridItem>
         ))}

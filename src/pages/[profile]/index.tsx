@@ -158,23 +158,22 @@ export default function Profile() {
             >
               <StatGroup color="white">
                 <Stat>
-                  <StatLabel>Responds in</StatLabel>
+                  <StatLabel textAlign="center">⏳ Responds in</StatLabel>
                   <StatNumber alignItems="center" justifyContent="center">
-                    <Icon as={FiClock} />
                     {celebrity.responseTime}
                   </StatNumber>
                 </Stat>
                 <Stat>
-                  <StatLabel>Reviews ({celebrity.numberOfReviews})</StatLabel>
+                  <StatLabel>
+                    ⭐ Reviews ({celebrity.numberOfReviews})
+                  </StatLabel>
                   <StatNumber alignItems="center" justifyContent="center">
-                    <Icon as={FiStar} />
                     {celebrity.rating}
                   </StatNumber>
                 </Stat>
                 <Stat>
-                  <StatLabel>Fans</StatLabel>
+                  <StatLabel>❤️ Fans</StatLabel>
                   <StatNumber alignItems="center" justifyContent="center">
-                    <Icon as={FiHeart} />
                     {celebrity.fans}
                   </StatNumber>
                 </Stat>

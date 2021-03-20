@@ -45,7 +45,7 @@ function AutographCard({
         </Text>
 
         <Box
-          bg={useColorModeValue('white', 'gray.700')}
+          bg="white"
           rounded="12px"
           shadow="base"
           p="40px"

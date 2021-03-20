@@ -74,15 +74,6 @@ export default function Header() {
         </Text>
       </Link>
       <HStack>
-        {/* <Button
-          colorScheme="blue"
-          color="white"
-          isRound
-          aria-label="gallery"
-          onClick={() => router.push('/celebrity')}
-        >
-          Celeb POV
-        </Button> */}
         <IconButton
           colorScheme="blue"
           color="white"
@@ -113,14 +104,26 @@ export default function Header() {
             aria-label="connect"
           />
         ) : (
-          <Button
-            color="white"
-            colorScheme="blue"
-            leftIcon={<FiUser />}
-            onClick={() => toggleWalletModal()}
-          >
-            {ENSName || `${shortenAddress(account)}`}
-          </Button>
+          <>
+            <Button
+              color="white"
+              colorScheme="blue"
+              leftIcon={<FiUser />}
+              onClick={() => toggleWalletModal()}
+              display={{ base: 'none', md: 'block' }}
+            >
+              {ENSName || `${shortenAddress(account)}`}
+            </Button>
+            <IconButton
+              isRound
+              colorScheme="blue"
+              color="white"
+              icon={<FiUser />}
+              onClick={() => toggleWalletModal()}
+              aria-label="account"
+              display={{ base: 'inline-flex', md: 'none' }}
+            />
+          </>
         )}
         <Button
           display={account ? 'none' : 'block'}
