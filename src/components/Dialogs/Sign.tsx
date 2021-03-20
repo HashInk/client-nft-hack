@@ -75,7 +75,11 @@ export default function Sign() {
 
   async function onSend(event) {
     try {
-      const tx = await contract.signRequest();
+      const requestId = 2;
+      const hash = '0x02';
+      const URI = '0x02';
+      const tx = await contract.signRequest(requestId, hash, URI);
+
       await tx.wait();
       toast({
         title: 'Sent',
