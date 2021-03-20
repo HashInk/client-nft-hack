@@ -21,7 +21,6 @@ export default function Notifications() {
         <IconButton
           isRound
           colorScheme="blue"
-          opacity={0.8}
           color="white"
           aria-label="notifications"
           icon={<FiBell aria-label="notifications" />}

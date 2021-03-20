@@ -7,6 +7,7 @@ import {
   Text,
   Tooltip,
   useColorMode,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { useWeb3React } from '@web3-react/core';
 import { useRouter } from 'next/router';
@@ -48,7 +49,6 @@ export default function Header() {
       alignItems="center"
       justifyContent="space-between"
       px={['0.5rem', '0.5rem', '1rem']}
-      bgColor="white"
       zIndex="5"
       minH="3.5rem"
       h="3.5rem"
@@ -59,20 +59,24 @@ export default function Header() {
       w="100%"
       boxShadow="rgba(0, 0, 0, 0.15) 0px 2px 8px"
       as="header"
-      borderTop="6px solid #e6007a"
+      borderTop={useColorModeValue('6px solid #e6007a', '6px solid #2f54eb')}
+      bgColor={useColorModeValue('white', '#e6007a')}
     >
       <Link
         onClick={() => router.push('/')}
         _hover={{ textDecoration: 'none' }}
       >
-        <Text fontSize="2rem" fontWeight="600" color="black">
+        <Text
+          fontSize="2rem"
+          fontWeight="600"
+          color={useColorModeValue('black', 'white')}
+        >
           🔏 HashInk
         </Text>
       </Link>
       <HStack>
         {/* <Button
           colorScheme="blue"
-          opacity={0.8}
           color="white"
           isRound
           aria-label="gallery"
@@ -82,7 +86,6 @@ export default function Header() {
         </Button> */}
         <IconButton
           colorScheme="blue"
-          opacity={0.8}
           color="white"
           isRound
           onClick={toggleColorMode}
@@ -91,7 +94,6 @@ export default function Header() {
         />
         <IconButton
           colorScheme="blue"
-          opacity={0.8}
           color="white"
           isRound
           aria-label="gallery"
@@ -105,7 +107,6 @@ export default function Header() {
         {!account ? (
           <IconButton
             isRound
-            opacity={0.8}
             colorScheme="blue"
             color="white"
             icon={<FiLogIn />}
@@ -114,7 +115,6 @@ export default function Header() {
           />
         ) : (
           <Button
-            opacity={0.8}
             color="white"
             colorScheme="blue"
             leftIcon={<FiUser />}
