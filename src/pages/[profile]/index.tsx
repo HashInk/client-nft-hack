@@ -196,10 +196,9 @@ export default function Profile() {
                   <PopoverHeader>How does this work?!</PopoverHeader>
                   <PopoverBody>
                     <OrderedList>
-                      <ListItem>Lorem ipsum dolor sit amet</ListItem>
-                      <ListItem>Consectetur adipiscing elit</ListItem>
-                      <ListItem>Integer molestie lorem at massa</ListItem>
-                      <ListItem>Facilisis in pretium nisl aliquet</ListItem>
+                      <ListItem>Request an autograph</ListItem>
+                      <ListItem>Wait to hear back from your celeb</ListItem>
+                      <ListItem>Collect Autographs</ListItem>
                     </OrderedList>
                   </PopoverBody>
                 </PopoverContent>

@@ -32,7 +32,9 @@ export default class App extends NextApp {
       <>
         <Head>
           <title key="title">HashInk | NFT Autographs</title>
+          <link key="favicon" rel="icon" href={`./favicon.ico`} />
         </Head>
+
         <Web3ReactProvider getLibrary={getLibrary}>
           <ChakraProvider theme={theme}>
             <Global styles={GlobalStyles} />

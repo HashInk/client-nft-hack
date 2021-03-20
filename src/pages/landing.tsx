@@ -76,7 +76,7 @@ export default function Landing() {
               >
                 Digital autographs, guest starring your{' '}
                 <chakra.span
-                  animation={`${shine} 30s ease-in-out infinite`}
+                  animation={`${shine} 10s ease-in-out infinite`}
                   backgroundSize="200% auto"
                   bgGradient="linear(to-l, #7928CA,#FF0080, #7928CA)"
                   bgClip="text"
@@ -178,7 +178,7 @@ export default function Landing() {
                 p="6"
               >
                 <Stack flex="1" isInline spacing="6" pr={{ base: 0, md: '4' }}>
-                  <Avatar name={celeb.name} src={celeb.image} />
+                  <Avatar name={celeb.name} src={celeb.image} boxShadow="sm" />
                   <Box flex="1">
                     <Text fontSize="lg" fontWeight="bold" mt="-1">
                       {celeb.name}
