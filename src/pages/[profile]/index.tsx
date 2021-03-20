@@ -79,7 +79,6 @@ export default function Profile() {
   const { toggleRequestModal } = useStore();
   const router = useRouter();
   const { id, comment } = router.query;
-  console.log('comment:', comment);
 
   const celebrity = {
     image:

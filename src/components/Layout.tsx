@@ -7,7 +7,7 @@ import Web3Manager from './Web3Manager';
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <Web3Manager>
+    <>
       <>
         <Header />
         <Box as="main">
@@ -17,6 +17,6 @@ export default function Layout({ children }: { children: ReactNode }) {
 
         <Dialogs />
       </>
-    </Web3Manager>
+    </>
   );
 }

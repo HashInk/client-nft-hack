@@ -17,6 +17,11 @@ import Dialog from './Dialog';
 export default function Request() {
   const { requestModalIsOpen, toggleRequestModal } = useStore();
   const [files, setFiles] = useState([]);
+  const [requestForm, setRequestForm] = useState({
+    to: '',
+    message: '',
+  });
+
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/*',
     onDrop: (acceptedFiles) => {
@@ -39,6 +44,8 @@ export default function Request() {
   );
 
   function onSend() {
+    console.log('requestForm:,', requestForm);
+    console.log('files:', files);
     toggleRequestModal();
   }
   return (
@@ -51,22 +58,43 @@ export default function Request() {
           <Button variant="ghost" mr={3} onClick={toggleRequestModal}>
             Cancel
           </Button>
-          <Button colorScheme="blue" onClick={onSend}>
+          <Button
+            colorScheme="blue"
+            onClick={onSend}
+            isDisabled={requestForm.to === '' || requestForm.message === ''}
+          >
             Send
           </Button>
         </>
       }
     >
       <VStack>
-        <FormControl id="name">
+        <FormControl id="name" isRequired>
           <FormLabel>To</FormLabel>
-          <Input type="email" placeholder="Name" />
+          <Input
+            type="email"
+            placeholder="Name"
+            value={requestForm.to}
+            onChange={(e: any) =>
+              setRequestForm({
+                ...requestForm,
+                to: e.target.value,
+              })
+            }
+          />
         </FormControl>
-        <FormControl id="message">
+        <FormControl id="message" isRequired>
           <FormLabel>Message</FormLabel>
           <Input
             type="text"
             placeholder="Can I get a happy birthday for my mom (Jill)?"
+            value={requestForm.message}
+            onChange={(e: any) =>
+              setRequestForm({
+                ...requestForm,
+                message: e.target.value,
+              })
+            }
           />
         </FormControl>
         <FormControl id="image">

@@ -7,5 +7,7 @@ module.exports = withPWA({
   },
   reactStrictMode: true,
   assetPrefix: '.',
-  env: {},
+  env: {
+    REQUIRED_CHAIN_ID: 4,
+  },
 });
