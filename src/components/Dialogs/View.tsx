@@ -16,7 +16,7 @@ export default function View() {
     <Dialog
       isOpen={viewModalIsOpen}
       onClose={toggleViewModal}
-      header="Celebrity X"
+      header="Justin Shenkarow"
       footer={
         <>
           <Button

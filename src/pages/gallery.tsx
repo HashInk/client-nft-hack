@@ -29,7 +29,7 @@ function AutographCard({
   toggleViewModal: () => any;
 }) {
   return (
-    <Flex>
+    <Flex filter={celeb.name !== 'Justin Shenkarow' && 'blur(8px)'}>
       <Box
         bg={useColorModeValue('white', 'gray.700')}
         rounded="12px"
@@ -66,23 +66,38 @@ function AutographCard({
 }
 
 export default function UserGallery() {
-  const [celebs, setCelebs] = useState([]);
   const { toggleViewModal } = useStore();
 
+  const [celebs, setCelebs] = useState([
+    {
+      image: '/justin.jpeg',
+      name: 'Justin Shenkarow',
+      link: 'justin-shenkarow',
+      price: 1000,
+      profession: 'Actor / Producer',
+      autograph:
+        'https://www.instantautographs.com/assets/ia-autograph-ddb0d9e55cf90a6d191a329322c6808d8bc991510b6f7902e377f368f962c8bb.png',
+    },
+  ]);
   useEffect(() => {
-    const newName = faker.name.findName();
-    setCelebs(
-      Array(10).fill({
-        image:
-          'https://images.immediate.co.uk/production/volatile/sites/3/2018/08/Simpsons_SO28_Gallery_11-fb0b632.jpg?quality=90&resize=620,413',
-        name: newName,
-        link: toKebabCase(newName),
-        price: faker.random.number(),
+    let i = 0;
+
+    let tempArr = [];
+    console.log('tempArr:', tempArr);
+    while (i < 3) {
+      const newCeleb = {
+        image: '',
+        name: faker.name.findName(),
+        link: '',
+        price: 0,
         profession: 'Actor / Producer',
-        autograph:
-          'https://www.instantautographs.com/assets/ia-autograph-ddb0d9e55cf90a6d191a329322c6808d8bc991510b6f7902e377f368f962c8bb.png',
-      }),
-    );
+      };
+
+      tempArr.push(newCeleb);
+      i++;
+      faker.seed(i);
+    }
+    setCelebs(celebs.concat(tempArr));
   }, []);
 
   return (

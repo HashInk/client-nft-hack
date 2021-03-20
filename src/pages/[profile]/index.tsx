@@ -89,7 +89,7 @@ export default function Profile() {
     responseTime: '1 day',
     numberOfReviews: 10,
     rating: 4.9,
-    fans: 30000,
+    fans: '1.2M',
   };
   return (
     <Box>

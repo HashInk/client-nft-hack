@@ -137,9 +137,8 @@ export default function Landing() {
                 fontSize={{ base: 'lg', lg: 'xl' }}
                 mt="6"
               >
-                Some text here about what we bring to celebrities and the
-                fans... Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Aliquid labore dolore sint esse earum id, corrupti.
+                HashInk provides NFT autographs, with royalty perks for
+                providers and 100% memoribila ownership for the end user.
               </Text>
 
               <Stack
@@ -198,10 +197,8 @@ export default function Landing() {
               </chakra.h2>
               <Text fontSize="lg" opacity={0.7}>
                 From YouTubers and Instagram stars, Athletes, Musicians, and
-                Comedians, and ofcourse, your favorite Crypto voices...... Lorem
-                ipsum dolor sit amet consectetur, adipisicing elit. Eveniet
-                molestias officia consequatur tenetur magni amet voluptates
-                numquam? ✍️
+                Comedians, and ofcourse, your favorite Crypto voices......
+                HashInk is the best way to get close to your favorite icons ✍️
               </Text>
             </Box>
 
