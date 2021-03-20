@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { keyframes } from '@emotion/react';
 import faker from 'faker';
+import image from 'next/image';
 import NextLink from 'next/link';
 import { createRef, useEffect, useState } from 'react';
 
@@ -27,22 +28,63 @@ const shine = keyframes`
 `;
 
 export default function Landing() {
-  const [celebrities, setCelebrities] = useState([]);
+  const [celebrities, setCelebrities] = useState([
+    {
+      image: '/justin.jpeg',
+      name: 'Justin Shenkarow',
+      link: 'justin-shenkarow',
+      price: 1000,
+      profession: 'Actor / Producer',
+    },
+    {
+      image: '/grimes.jpeg',
+      name: 'Grimes',
+      link: 'grimes',
+      price: 250,
+      profession: 'Musician / Songwriter',
+    },
+    {
+      image: '/logan.jpeg',
+      name: 'Logan Paul',
+      link: 'logan-paul',
+      price: 100,
+      profession: 'YouTuber / Actor / Influencer,',
+    },
+    {
+      image: '/lindsay.jpeg',
+      name: 'Lindsay Lohan Cerny',
+      link: 'lindsay-lohan',
+      price: 200,
+      profession: 'Actress',
+    },
+    {
+      image: '/3lau.jpeg',
+      name: '3LAU',
+      link: '3lau',
+      price: 60,
+      profession: 'Musician / DJ / Producer',
+    },
+  ]);
 
   useEffect(() => {
-    const newName = faker.name.findName();
-    setCelebrities(
-      Array(5).fill({
-        image:
-          'https://images.immediate.co.uk/production/volatile/sites/3/2018/08/Simpsons_SO28_Gallery_11-fb0b632.jpg?quality=90&resize=620,413',
-        name: newName,
-        link: toKebabCase(newName),
-        price: faker.random.number(),
-        profession: 'Actor / Producer - Show Y, Movie Z',
-        autograph:
-          'https://www.instantautographs.com/assets/ia-autograph-ddb0d9e55cf90a6d191a329322c6808d8bc991510b6f7902e377f368f962c8bb.png',
-      }),
-    );
+    let i = 0;
+
+    let tempArr = [];
+    console.log('tempArr:', tempArr);
+    while (i < 20) {
+      const newCeleb = {
+        image: '',
+        name: faker.name.findName(),
+        link: '',
+        price: 0,
+        profession: '',
+      };
+
+      tempArr.push(newCeleb);
+      i++;
+      faker.seed(i);
+    }
+    setCelebrities(celebrities.concat(tempArr));
   }, []);
 
   const boxRef = createRef<any>();
@@ -80,7 +122,7 @@ export default function Landing() {
                   backgroundSize="200% auto"
                   bgGradient="linear(to-l, #7928CA,#FF0080, #7928CA)"
                   bgClip="text"
-                  fontSize="6xl"
+                  fontSize={{ base: '2.25rem', sm: '3rem', lg: '4rem' }}
                   fontWeight="extrabold"
                   px="0.5rem"
                 >
@@ -163,7 +205,7 @@ export default function Landing() {
               </Text>
             </Box>
 
-            {celebrities.map((celeb: any, key: number) => (
+            {celebrities.slice(0, 5).map((celeb: any, key: number) => (
               <Stack
                 key={key}
                 direction={{ base: 'column', md: 'row' }}
@@ -197,6 +239,7 @@ export default function Landing() {
                       href="abc"
                       rel="noopener"
                       target="_blank"
+                      isDisabled={celeb.name !== 'Justin Shenkarow'}
                     >
                       View
                     </Button>
@@ -205,7 +248,7 @@ export default function Landing() {
               </Stack>
             ))}
 
-            <Box maxW="600px" mx="auto" textAlign="center">
+            <Box maxW="500px" mx="auto" textAlign="center">
               <chakra.p
                 textStyle="caps"
                 mb="8"
@@ -215,29 +258,11 @@ export default function Landing() {
                 And many more...
               </chakra.p>
               <Wrap justify="center">
-                {celebrities.map((celeb, i) => (
-                  <WrapItem key={i}>
-                    <Tooltip label="Actor X" aria-label="Actor X" color="white">
-                      <Avatar name={celeb.name} src={celeb.image} size="lg" />
-                    </Tooltip>
-                  </WrapItem>
-                ))}
-                {celebrities.map((celeb, i) => (
+                {celebrities.slice(5, 25).map((celeb, i) => (
                   <WrapItem key={i}>
                     <Tooltip
-                      label="Actress Y"
-                      aria-label="Actress Y"
-                      color="white"
-                    >
-                      <Avatar name={celeb.name} src={celeb.image} size="lg" />
-                    </Tooltip>
-                  </WrapItem>
-                ))}
-                {celebrities.map((celeb, i) => (
-                  <WrapItem key={i}>
-                    <Tooltip
-                      label="Musician Z"
-                      aria-label="Musician Z"
+                      label={celeb.name}
+                      aria-label={celeb.name}
                       color="white"
                     >
                       <Avatar name={celeb.name} src={celeb.image} size="lg" />

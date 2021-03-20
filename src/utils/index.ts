@@ -9,6 +9,14 @@ enum ChainId {
   RINKEBY = 4,
 }
 
+export const CHAIN_ID_NAMES: { [key: number]: string } = {
+  1: 'Mainnet',
+  3: 'Ropsten',
+  4: 'Rinkeby',
+  5: 'Görli',
+  42: 'Kovan',
+};
+
 const ETHERSCAN_PREFIXES: { [chainId in ChainId]: string } = {
   1: '',
   4: 'rinkeby.',

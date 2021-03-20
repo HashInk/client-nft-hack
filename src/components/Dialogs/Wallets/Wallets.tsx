@@ -7,6 +7,7 @@ import {
   Flex,
   Text,
 } from '@chakra-ui/react';
+import MetaMaskOnboarding from '@metamask/onboarding';
 import { AbstractConnector } from '@web3-react/abstract-connector';
 import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core';
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
@@ -100,56 +101,57 @@ export default function Wallets() {
   };
 
   function getOptions() {
-    // const isMetamask = window.ethereum && window.ethereum.isMetaMask;
+    const isMetamask =
+      window.ethereum && MetaMaskOnboarding.isMetaMaskInstalled();
     return Object.keys(SUPPORTED_WALLETS).map((key) => {
       const option = SUPPORTED_WALLETS[key];
-      // if (!isDesktop) {
-      //   if (!window.web3 && !window.ethereum && option.mobile) {
-      //     return (
-      //       <Option
-      //         onClick={() =>
-      //           option.connector !== connector &&
-      //           !option.href &&
-      //           tryActivation(option.connector)
-      //         }
-      //         key={key}
-      //         id={key}
-      //         active={option.connector && option.connector === connector}
-      //         link={option.href}
-      //         name={option.name}
-      //         icon={option.name}
-      //       />
-      //     );
-      //   }
-      //   return null;
-      // }
+      if (!isDesktop) {
+        if (option.mobile && !window?.web3 && !window?.ethereum) {
+          return (
+            <Option
+              onClick={() =>
+                option.connector !== connector &&
+                !option.href &&
+                tryActivation(option.connector)
+              }
+              key={key}
+              id={key}
+              active={option.connector && option.connector === connector}
+              link={option.href}
+              name={option.name}
+              icon={option.name}
+            />
+          );
+        }
+        return null;
+      }
 
       // overwrite injected when needed
       if (option.connector === injected) {
         // don't show injected if there's no injected provider
-        // if (!(window.web3 || window.ethereum)) {
-        // if (option.name === 'MetaMask') {
-        //   return (
-        //     <Option
-        //       key={key}
-        //       id={key}
-        //       name={'Install MetamMsk'}
-        //       icon={option.name}
-        //       link={'https://metamask.io/'}
-        //     />
-        //   );
-        // } else {
-        // return null; //dont want to return install twice
-        // }
-        // }
+        if (!(window?.web3 || window?.ethereum)) {
+          if (option.name === 'MetaMask') {
+            return (
+              <Option
+                key={key}
+                id={key}
+                name={'Install MetamMsk'}
+                icon={option.name}
+                link={'https://metamask.io/'}
+              />
+            );
+          } else {
+            return null; //dont want to return install twice
+          }
+        }
         // don't return metamask if injected provider isn't metamask
-        // else if (option.name === 'MetaMask' && !isMetamask) {
-        //   return null;
-        // }
-        // // likewise for generic
-        // else if (option.name === 'Injected' && isMetamask) {
-        //   return null;
-        // }
+        else if (option.name === 'MetaMask' && !isMetamask) {
+          return null;
+        }
+        // likewise for generic
+        else if (option.name === 'Injected' && isMetamask) {
+          return null;
+        }
       }
 
       // return rest of options

@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Flex,
   HStack,
@@ -15,6 +16,7 @@ import { FiGrid, FiLogIn, FiMoon, FiSun, FiUser } from 'react-icons/fi';
 
 import useStore from '../store';
 import { shortenAddress } from '../utils';
+import MobileMenu from './MobileMenu';
 import Notifications from './Notifications';
 
 export default function Header() {
@@ -73,7 +75,7 @@ export default function Header() {
           🔏 HashInk
         </Text>
       </Link>
-      <HStack>
+      <HStack display={{ base: 'none ', md: 'flex' }}>
         <IconButton
           colorScheme="blue"
           color="white"
@@ -104,26 +106,14 @@ export default function Header() {
             aria-label="connect"
           />
         ) : (
-          <>
-            <Button
-              color="white"
-              colorScheme="blue"
-              leftIcon={<FiUser />}
-              onClick={() => toggleWalletModal()}
-              display={{ base: 'none', md: 'inline-flex' }}
-            >
-              {ENSName || `${shortenAddress(account)}`}
-            </Button>
-            <IconButton
-              isRound
-              colorScheme="blue"
-              color="white"
-              icon={<FiUser />}
-              onClick={() => toggleWalletModal()}
-              aria-label="account"
-              display={{ base: 'inline-flex', md: 'none' }}
-            />
-          </>
+          <Button
+            color="white"
+            colorScheme="blue"
+            leftIcon={<FiUser />}
+            onClick={() => toggleWalletModal()}
+          >
+            {ENSName || `${shortenAddress(account)}`}
+          </Button>
         )}
         <Button
           display={account ? 'none' : 'block'}
@@ -133,6 +123,17 @@ export default function Header() {
         >
           Enroll
         </Button>
+      </HStack>
+      <HStack display={{ base: 'block', md: 'none' }}>
+        <IconButton
+          isRound
+          colorScheme="blue"
+          color="white"
+          icon={<FiUser />}
+          onClick={() => toggleWalletModal()}
+          aria-label="account"
+        />
+        <MobileMenu />
       </HStack>
     </Flex>
   );

@@ -12,6 +12,12 @@ import {
   Select,
   Text,
 } from '@chakra-ui/react';
+import pinataSDK from '@pinata/sdk';
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
+
+import axios from 'axios';
+import FormData from 'form-data';
 import { ChangeEvent, useRef, useState } from 'react';
 import { FiRotateCcw, FiX } from 'react-icons/fi';
 import SignaturePad from 'react-signature-canvas';
@@ -27,12 +33,25 @@ export default function Sign() {
     from: 'John Doe',
     details: 'Can I get a simple autograph?',
   };
+  // const pinata = pinataSDK(
+  //   process.env.PINATA_API_KEY,
+  //   process.env.PINATA_API_SECRET,
+  // );
 
-  function onSend() {
-    toggleSignModal();
-  }
+  // pinata
+  //   .testAuthentication()
+  //   .then((result) => {
+  //     //handle successful authentication here
+  //     console.log(result);
+  //   })
+  //   .catch((err) => {
+  //     //handle error here
+  //     console.log(err);
+  //   });
 
   const sigRef = useRef(null);
+
+  const [imageURL, setImageURL] = useState(null);
 
   const [penColor, setPenColor] = useState('black');
   const [penSize, setPenSize] = useState(16);
@@ -43,6 +62,34 @@ export default function Sign() {
     if (data) {
       data.pop();
       sigRef.current.fromData(data);
+    }
+  }
+  let base64SignatureImage = '';
+
+  async function onSend(event) {
+    // toggleSignModal();
+    event.preventDefault();
+    let signature = null;
+
+    //@ts-ignore
+    if (sigRef.current && !sigRef.current.isEmpty()) {
+      signature = {
+        //@ts-ignore
+        data: sigRef.current.toDataURL().replace('data:image/png;base64,', ''),
+        type: 'image/jpeg',
+        name: 'photo.jpg',
+      };
+
+      console.log('signature:', signature);
+      //@ts-ignore
+      if (sigRef.current && !sigRef.current.isEmpty()) {
+        //@ts-ignore
+        base64SignatureImage = sigRef.current
+          ?.getTrimmedCanvas()
+          .toDataURL('image/png');
+
+        console.log('base64SignatureImage:', base64SignatureImage);
+      }
     }
   }
 
@@ -137,6 +184,7 @@ export default function Sign() {
               icon={<FiRotateCcw />}
             />
             <IconButton
+              //@ts-ignore
               onClick={() => sigRef.current && sigRef.current.clear()}
               aria-label="clear"
               icon={<FiX />}
