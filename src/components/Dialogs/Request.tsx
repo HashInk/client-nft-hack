@@ -6,12 +6,17 @@ import {
   FormLabel,
   Img,
   Input,
+  useToast,
   VStack,
 } from '@chakra-ui/react';
+import { BigNumber, utils } from 'ethers';
 import { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
+import AutographRequest from '../../abis/AutographRequestContract.json';
+import { useContract } from '../../hooks';
 import useStore from '../../store';
+import { addresses } from '../../utils/addresses';
 import Dialog from './Dialog';
 
 export default function Request() {
@@ -21,6 +26,12 @@ export default function Request() {
     to: '',
     message: '',
   });
+  const toast = useToast();
+
+  const contract = useContract(
+    addresses.autographRequest,
+    AutographRequest.abi,
+  );
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/*',
@@ -43,9 +54,35 @@ export default function Request() {
     [files],
   );
 
-  function onSend() {
-    console.log('requestForm:,', requestForm);
-    console.log('files:', files);
+  async function onSend() {
+    console.log('contract:', contract);
+    try {
+      const tx = await contract.createRequest(
+        '0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC',
+        {
+          // gasLimit: 21000,
+          value: '100000000000000000',
+        },
+      );
+      const res = await tx.wait();
+      console.log('res:', res);
+      toast({
+        title: 'Request sent',
+        description: 'Autograph pending...',
+        status: 'success',
+        variant: 'subtle',
+        isClosable: true,
+      });
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: 'Request failed',
+        description: 'Please try again',
+        status: 'error',
+        variant: 'subtle',
+        isClosable: true,
+      });
+    }
     toggleRequestModal();
   }
   return (
