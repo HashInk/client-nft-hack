@@ -80,7 +80,7 @@ export default function Landing() {
                   backgroundSize="200% auto"
                   bgGradient="linear(to-l, #7928CA,#FF0080, #7928CA)"
                   bgClip="text"
-                  fontSize="6xl"
+                  fontSize={{ base: '2.25rem', sm: '3rem', lg: '4rem' }}
                   fontWeight="extrabold"
                   px="0.5rem"
                 >
