@@ -1,7 +1,7 @@
 import Document, { Head, Html, Main, NextScript } from 'next/document';
 
-const APP_NAME = 'next-pwa example';
-const APP_DESCRIPTION = 'This is an example of using next-pwa plugin';
+const APP_NAME = 'HashInk';
+const APP_DESCRIPTION = 'NFT Autographs';
 
 export default class extends Document {
   static async getInitialProps(ctx) {

@@ -81,11 +81,10 @@ export default function Profile() {
   const { id, comment } = router.query;
 
   const celebrity = {
-    image:
-      'https://images.immediate.co.uk/production/volatile/sites/3/2018/08/Simpsons_SO28_Gallery_11-fb0b632.jpg?quality=90&resize=620,413',
-    name: 'Joe Schmoe',
+    image: '/justin.jpeg',
+    name: 'Justin Shenkarow',
     background: 'Actor',
-    price: 100,
+    price: 1000,
     autograph: '../../assets/white-autograph.png',
     responseTime: '1 day',
     numberOfReviews: 10,

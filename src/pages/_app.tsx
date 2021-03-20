@@ -22,15 +22,11 @@ function FunctionalApp({
   Component: NextComponentType;
 }): JSX.Element | null {
   const [painted, setPainted] = useState(false);
-  console.log('painted:', painted);
   useIsomorphicLayoutEffect(() => {
     setPainted(true);
   }, []);
   const { error, chainId } = useWeb3React();
-  console.log('chainId:', chainId);
-  console.log('error:', error);
   const requiredChainId = process.env.REQUIRED_CHAIN_ID;
-  console.log('requiredChainId:', requiredChainId);
 
   return !painted ? null : (
     <Layout>
