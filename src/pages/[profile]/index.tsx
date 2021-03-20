@@ -146,41 +146,42 @@ export default function Profile() {
               </StyledBox>
             </Flex>
 
-            <Box
-              boxShadow="md"
-              p="6"
-              rounded="md"
-              bgGradient="linear(to-l, #7928CA, #FF0080)"
-              my="2rem"
-            >
-              <StatGroup color="white">
-                <Stat>
-                  <StatLabel textAlign="center">⏳ Responds in</StatLabel>
-                  <StatNumber alignItems="center" justifyContent="center">
-                    {celebrity.responseTime}
-                  </StatNumber>
-                </Stat>
-                <Stat>
-                  <StatLabel>
-                    ⭐ Reviews ({celebrity.numberOfReviews})
-                  </StatLabel>
-                  <StatNumber alignItems="center" justifyContent="center">
-                    {celebrity.rating}
-                  </StatNumber>
-                </Stat>
-                <Stat>
-                  <StatLabel>❤️ Fans</StatLabel>
-                  <StatNumber alignItems="center" justifyContent="center">
-                    {celebrity.fans}
-                  </StatNumber>
-                </Stat>
-              </StatGroup>
-            </Box>
-            <VStack>
+            <VStack spacing={8}>
+              <Box
+                boxShadow="md"
+                p="6"
+                rounded="md"
+                bgGradient="linear(to-l, #7928CA, #FF0080)"
+                mt="2rem"
+                w="100%"
+              >
+                <StatGroup color="white">
+                  <Stat>
+                    <StatLabel textAlign="center">⏳ Responds in</StatLabel>
+                    <StatNumber alignItems="center" justifyContent="center">
+                      {celebrity.responseTime}
+                    </StatNumber>
+                  </Stat>
+                  <Stat>
+                    <StatLabel>
+                      ⭐ Reviews ({celebrity.numberOfReviews})
+                    </StatLabel>
+                    <StatNumber alignItems="center" justifyContent="center">
+                      {celebrity.rating}
+                    </StatNumber>
+                  </Stat>
+                  <Stat>
+                    <StatLabel>❤️ Fans</StatLabel>
+                    <StatNumber alignItems="center" justifyContent="center">
+                      {celebrity.fans}
+                    </StatNumber>
+                  </Stat>
+                </StatGroup>
+              </Box>
+
               <Button
                 size="lg"
-                p="1.6rem 1.8rem"
-                w="50%"
+                w="100%"
                 colorScheme="blue"
                 onClick={toggleRequestModal}
               >
@@ -189,12 +190,7 @@ export default function Profile() {
 
               <Popover>
                 <PopoverTrigger>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    colorScheme="blue"
-                    w="50%"
-                  >
+                  <Button size="lg" variant="outline" colorScheme="blue">
                     How does this work?!
                   </Button>
                 </PopoverTrigger>
