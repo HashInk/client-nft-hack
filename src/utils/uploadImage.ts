@@ -1,4 +1,4 @@
-// const fleek = require('@fleekhq/fleek-storage-js');
+export const fleek = require('@fleekhq/fleek-storage-js');
 // const axios = require('axios');
 // const FormData = require('form-data');
 
