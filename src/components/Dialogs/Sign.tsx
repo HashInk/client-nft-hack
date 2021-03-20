@@ -75,9 +75,10 @@ export default function Sign() {
 
   async function onSend(event) {
     try {
-      const requestId = 2;
-      const hash = '0x02';
-      const URI = '0x02';
+      const requestId = 3;
+      const hash = 'QmfAvnM89JrqvdhLymbU5sXoAukEJygSLk9cJMBPTyrmxo';
+      const URI = `https://ipfs.io/ipfs/${hash}`;
+
       const tx = await contract.signRequest(requestId, hash, URI);
 
       await tx.wait();
