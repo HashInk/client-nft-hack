@@ -20,6 +20,7 @@ import { createRef, useEffect, useState } from 'react';
 
 import Footer from '../components/Footer';
 import { toKebabCase } from '../utils';
+import { hardCodedCelebs } from '../utils/constants';
 
 const shine = keyframes`
   to {
@@ -71,20 +72,20 @@ export default function Landing() {
 
     let tempArr = [];
     console.log('tempArr:', tempArr);
-    while (i < 20) {
-      const newCeleb = {
-        image: '',
-        name: faker.name.findName(),
-        link: '',
-        price: 0,
-        profession: '',
-      };
+    // while (i < 20) {
+    //   const newCeleb = {
+    //     image: '',
+    //     name: faker.name.findName(),
+    //     link: '',
+    //     price: 0,
+    //     profession: '',
+    //   };
 
-      tempArr.push(newCeleb);
-      i++;
-      faker.seed(i);
-    }
-    setCelebrities(celebrities.concat(tempArr));
+    //   tempArr.push(newCeleb);
+    //   i++;
+    //   faker.seed(i);
+    // }
+    setCelebrities(celebrities.concat(hardCodedCelebs));
   }, []);
 
   const boxRef = createRef<any>();

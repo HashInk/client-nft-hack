@@ -46,7 +46,6 @@ function FunctionalApp({
               {requiredChainId !== 1 ? ' testnet' : ''}.
             </Text>
           </VStack>
-          {console.log('here')}
         </Flex>
       ) : (
         <Component />
