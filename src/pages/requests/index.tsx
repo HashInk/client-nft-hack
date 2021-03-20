@@ -1,4 +1,13 @@
-import { Box, Container, Grid, GridItem } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Container,
+  Divider,
+  Flex,
+  Grid,
+  GridItem,
+  Text,
+} from '@chakra-ui/react';
 import faker from 'faker';
 import { useEffect, useState } from 'react';
 
@@ -29,17 +38,25 @@ function Profile() {
     <Container maxW="container.lg" mt="5rem">
       <Grid templateColumns="repeat(1, 1fr)" gap={2}>
         {celebs.map((celeb: any, key: number) => (
-          <GridItem w="100%" key={key}>
-            <Box
-              p="5"
-              borderWidth="1px"
-              rounded="md"
-              my="0.5rem"
-              onClick={toggleSignModal}
-              cursor="pointer"
-            >
-              request
-            </Box>
+          <GridItem
+            w="100%"
+            key={key}
+            borderWidth="1px"
+            rounded="md"
+            my="0.5rem"
+          >
+            <Flex p="1rem" align="center" justify="space-between">
+              <Box>
+                <Text fontWeight="700" fontSize="1.5rem">
+                  A new request
+                </Text>{' '}
+                <Divider orientation="vertical" />{' '}
+                <Text>Click for more details</Text>
+              </Box>
+              <Button size="lg" onClick={toggleSignModal} colorScheme="pink">
+                Click
+              </Button>
+            </Flex>
           </GridItem>
         ))}
       </Grid>
