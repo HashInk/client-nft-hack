@@ -8,9 +8,8 @@ export default function Redirect(): null {
   const JustinsAccount = '0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC';
 
   useEffect(() => {
-    // if (account === JustinsAccount) replace('/requests');
-    // else replace('/landing');
-    replace('/landing');
+    if (account === JustinsAccount) replace('/requests');
+    else replace('/landing');
   }, [replace, account]);
 
   return null;
