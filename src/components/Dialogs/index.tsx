@@ -1,3 +1,4 @@
+import Enroll from './Enroll';
 import Request from './Request';
 import Sign from './Sign';
 import View from './View';
@@ -10,6 +11,7 @@ export default function Dialogs() {
       <View />
       <Request />
       <Sign />
+      <Enroll />
     </>
   );
 }

@@ -5,7 +5,6 @@ import {
   IconButton,
   Link,
   Text,
-  Tooltip,
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
@@ -23,7 +22,7 @@ export default function Header() {
   const router = useRouter();
   const { colorMode, toggleColorMode } = useColorMode();
   const [ENSName, setENSName] = useState('');
-  const { toggleWalletModal } = useStore();
+  const { toggleWalletModal, toggleEnrollModal } = useStore();
 
   useEffect(() => {
     if (library && account) {
@@ -59,7 +58,7 @@ export default function Header() {
       w="100%"
       boxShadow="rgba(0, 0, 0, 0.15) 0px 2px 8px"
       as="header"
-      borderTop={useColorModeValue('6px solid #e6007a', '6px solid #2f54eb')}
+      borderTop="6px solid #e6007a"
       bgColor={useColorModeValue('white', '#e6007a')}
     >
       <Link
@@ -75,15 +74,6 @@ export default function Header() {
         </Text>
       </Link>
       <HStack>
-        {/* <Button
-          colorScheme="blue"
-          color="white"
-          isRound
-          aria-label="gallery"
-          onClick={() => router.push('/celebrity')}
-        >
-          Celeb POV
-        </Button> */}
         <IconButton
           colorScheme="blue"
           color="white"
@@ -114,15 +104,35 @@ export default function Header() {
             aria-label="connect"
           />
         ) : (
-          <Button
-            color="white"
-            colorScheme="blue"
-            leftIcon={<FiUser />}
-            onClick={() => toggleWalletModal()}
-          >
-            {ENSName || `${shortenAddress(account)}`}
-          </Button>
+          <>
+            <Button
+              color="white"
+              colorScheme="blue"
+              leftIcon={<FiUser />}
+              onClick={() => toggleWalletModal()}
+              display={{ base: 'none', md: 'inline-flex' }}
+            >
+              {ENSName || `${shortenAddress(account)}`}
+            </Button>
+            <IconButton
+              isRound
+              colorScheme="blue"
+              color="white"
+              icon={<FiUser />}
+              onClick={() => toggleWalletModal()}
+              aria-label="account"
+              display={{ base: 'inline-flex', md: 'none' }}
+            />
+          </>
         )}
+        <Button
+          display={account ? 'none' : 'block'}
+          onClick={() => toggleEnrollModal()}
+          color="white"
+          colorScheme="blue"
+        >
+          Enroll
+        </Button>
       </HStack>
     </Flex>
   );

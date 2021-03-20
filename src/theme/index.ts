@@ -8,7 +8,7 @@ export default extendTheme({
   //   },
   // color shades generated with https://maketintsandshades.com/
   colors: {
-    black: {
+    customBlack: {
       50: '#202020',
       100: '#202020',
       200: '#202020',
@@ -20,7 +20,7 @@ export default extendTheme({
       800: '#060606',
       900: '#060606',
     },
-    gray: {
+    customGray: {
       50: '#535660',
       100: '#535660',
       200: '#535660',

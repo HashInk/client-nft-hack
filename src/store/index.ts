@@ -5,11 +5,12 @@ type Store = {
   signModalIsOpen: boolean;
   requestModalIsOpen: boolean;
   viewModalIsOpen: boolean;
-  viewModalCelebrity: string;
+  enrollModalIsOpen: boolean;
   toggleWalletModal(): void;
   toggleSignModal(): void;
   toggleRequestModal(): void;
   toggleViewModal(): void;
+  toggleEnrollModal(): void;
 };
 
 const useStore = create<Store>((set) => ({
@@ -17,7 +18,7 @@ const useStore = create<Store>((set) => ({
   signModalIsOpen: false,
   requestModalIsOpen: false,
   viewModalIsOpen: false,
-  viewModalCelebrity: '',
+  enrollModalIsOpen: false,
   toggleWalletModal: () =>
     set((state) => ({ walletModalIsOpen: !state.walletModalIsOpen })),
   toggleSignModal: () =>
@@ -26,6 +27,8 @@ const useStore = create<Store>((set) => ({
     set((state) => ({ requestModalIsOpen: !state.requestModalIsOpen })),
   toggleViewModal: () =>
     set((state) => ({ viewModalIsOpen: !state.viewModalIsOpen })),
+  toggleEnrollModal: () =>
+    set((state) => ({ enrollModalIsOpen: !state.enrollModalIsOpen })),
 }));
 
 export default useStore;

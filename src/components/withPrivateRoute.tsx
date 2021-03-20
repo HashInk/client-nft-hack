@@ -3,7 +3,7 @@ import Router from 'next/router';
 const home = '/';
 
 function checkUserAuthentication() {
-  return { auth: false }; // change null to { isAdmin: true } for test it.
+  return { auth: { isAdmin: true } }; // change null to { isAdmin: true } for test it.
 }
 
 export default function withPrivateRoute(WrappedComponent: any) {

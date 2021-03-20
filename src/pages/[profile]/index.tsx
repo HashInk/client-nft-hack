@@ -5,7 +5,6 @@ import {
   Center,
   Container,
   Flex,
-  Icon,
   Img,
   ListItem,
   OrderedList,
@@ -25,9 +24,7 @@ import {
 } from '@chakra-ui/react';
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { FiClock, FiHeart, FiStar } from 'react-icons/fi';
 
 import useStore from '../../store';
 
@@ -98,46 +95,53 @@ export default function Profile() {
   };
   return (
     <Box>
-      <Box pt={{ base: '10rem', md: '12rem' }} pb={{ base: '0', md: '5rem' }}>
+      <Box pt={{ base: '6rem', md: '8rem' }} pb={{ base: '0', md: '5rem' }}>
         <Container maxW="container.lg">
           <Box textAlign="center" mb="3rem">
-            <Flex justify="space-between">
-              <Avatar
-                h="15rem"
-                w="15rem"
-                name={celebrity.name}
-                src={celebrity.image}
-                boxShadow="md"
-              />
-
+            <Flex
+              justify="space-between"
+              flexDirection={{ base: 'column', md: 'row' }}
+            >
               <Flex
-                justify="flex-start"
-                align="flex-start"
-                direction="column"
+                justify={{ base: 'space-between', md: 'flex-start' }}
+                align={{ base: 'center', md: 'flex-start' }}
+                direction={{ base: 'row', md: 'column' }}
                 textAlign="left"
                 ml="1rem"
                 lineHeight="3rem"
+                mb={{ base: '1rem', md: '0' }}
               >
-                <Text fontSize="3rem" fontWeight="700">
-                  {celebrity.name}
-                </Text>
+                <Avatar
+                  h={{ base: '8rem', md: '10rem' }}
+                  w={{ base: '8rem', md: '10rem' }}
+                  name={celebrity.name}
+                  src={celebrity.image}
+                  boxShadow="md"
+                  border="0.5rem solid #e6007a"
+                  order={{ base: 2, md: 1 }}
+                />
+                <Flex direction="column" order={{ base: 1, md: 2 }}>
+                  <Text fontSize="3rem" fontWeight="700">
+                    {celebrity.name}
+                  </Text>
 
-                <Text fontSize="1.5rem" fontWeight="400" color="gray" mt="0">
-                  {celebrity.background} - {celebrity.price}
-                </Text>
+                  <Text fontSize="1.5rem" fontWeight="400" color="gray" mt="0">
+                    {celebrity.background} - {celebrity.price}
+                  </Text>
+                </Flex>
               </Flex>
               <StyledBox
                 position="relative"
-                h="250px"
+                h={{ base: '120px', md: '240px' }}
                 background="linear-gradient(0deg, #000, #262626)"
                 borderRadius="0.5rem"
                 p="2rem"
               >
-                <Image
+                <Img
                   src="/white-autograph.png"
                   alt="autograph"
-                  width="448"
-                  height="200"
+                  width={{ base: '120px', md: '480px' }}
+                  height={{ base: '120px', md: '214px' }}
                 />
               </StyledBox>
             </Flex>
@@ -151,23 +155,22 @@ export default function Profile() {
             >
               <StatGroup color="white">
                 <Stat>
-                  <StatLabel>Responds in</StatLabel>
+                  <StatLabel textAlign="center">⏳ Responds in</StatLabel>
                   <StatNumber alignItems="center" justifyContent="center">
-                    <Icon as={FiClock} />
                     {celebrity.responseTime}
                   </StatNumber>
                 </Stat>
                 <Stat>
-                  <StatLabel>Reviews ({celebrity.numberOfReviews})</StatLabel>
+                  <StatLabel>
+                    ⭐ Reviews ({celebrity.numberOfReviews})
+                  </StatLabel>
                   <StatNumber alignItems="center" justifyContent="center">
-                    <Icon as={FiStar} />
                     {celebrity.rating}
                   </StatNumber>
                 </Stat>
                 <Stat>
-                  <StatLabel>Fans</StatLabel>
+                  <StatLabel>❤️ Fans</StatLabel>
                   <StatNumber alignItems="center" justifyContent="center">
-                    <Icon as={FiHeart} />
                     {celebrity.fans}
                   </StatNumber>
                 </Stat>
@@ -177,7 +180,7 @@ export default function Profile() {
               <Button
                 size="lg"
                 p="1.6rem 1.8rem"
-                w="100%"
+                w="50%"
                 colorScheme="blue"
                 onClick={toggleRequestModal}
               >
@@ -186,7 +189,12 @@ export default function Profile() {
 
               <Popover>
                 <PopoverTrigger>
-                  <Button size="lg" variant="outline" colorScheme="blue">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    colorScheme="blue"
+                    w="50%"
+                  >
                     How does this work?!
                   </Button>
                 </PopoverTrigger>

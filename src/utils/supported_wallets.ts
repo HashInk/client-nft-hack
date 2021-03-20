@@ -12,11 +12,11 @@ interface WalletInfo {
 
 //todo: replace link for coinbase wallet
 export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
-  INJECTED: {
-    connector: injected,
-    name: 'Injected',
-    href: null,
-  },
+  // INJECTED: {
+  //   connector: injected,
+  //   name: 'Injected',
+  //   href: null,
+  // },
   METAMASK: {
     connector: injected,
     name: 'MetaMask',
@@ -40,9 +40,9 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     href: null,
     mobile: true,
   },
-  MAGIC: {
-    connector: magic,
-    name: 'Magic',
-    href: null,
-  },
+  // MAGIC: {
+  //   connector: magic,
+  //   name: 'Magic',
+  //   href: null,
+  // },
 };

@@ -58,18 +58,18 @@ export default function Request() {
       }
     >
       <VStack>
-        <FormControl id="email">
+        <FormControl id="name">
           <FormLabel>To</FormLabel>
           <Input type="email" placeholder="Name" />
         </FormControl>
-        <FormControl id="email">
+        <FormControl id="message">
           <FormLabel>Message</FormLabel>
           <Input
             type="text"
             placeholder="Can I get a happy birthday for my mom (Jill)?"
           />
         </FormControl>
-        <FormControl id="email">
+        <FormControl id="image">
           <FormLabel>Image (optional)</FormLabel>
           <Box {...getRootProps({ className: 'dropzone' })}>
             <input {...getInputProps()} />
