@@ -60,7 +60,7 @@ export default function Landing() {
       <Box>
         <Box
           as="section"
-          pt={{ base: '10rem', md: '12rem' }}
+          pt={{ base: '6rem', md: '12rem' }}
           pb={{ base: '0', md: '5rem' }}
         >
           <Container>

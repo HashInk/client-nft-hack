@@ -5,7 +5,6 @@ import {
   Center,
   Container,
   Flex,
-  Icon,
   Img,
   ListItem,
   OrderedList,
@@ -25,9 +24,7 @@ import {
 } from '@chakra-ui/react';
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
-// import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { FiClock, FiHeart, FiStar } from 'react-icons/fi';
 
 import useStore from '../../store';
 

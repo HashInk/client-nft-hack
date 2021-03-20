@@ -110,7 +110,7 @@ export default function Header() {
               colorScheme="blue"
               leftIcon={<FiUser />}
               onClick={() => toggleWalletModal()}
-              display={{ base: 'none', md: 'block' }}
+              display={{ base: 'none', md: 'inline-flex' }}
             >
               {ENSName || `${shortenAddress(account)}`}
             </Button>

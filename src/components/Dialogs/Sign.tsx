@@ -22,8 +22,12 @@ import Dialog from './Dialog';
 
 export default function Sign() {
   const { signModalIsOpen, toggleSignModal } = useStore();
-  const albumCover =
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Ethereum-icon-purple.svg/440px-Ethereum-icon-purple.svg.png';
+  const request = {
+    albumCover:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Ethereum-icon-purple.svg/440px-Ethereum-icon-purple.svg.png',
+    from: 'John Doe',
+    details: 'Can I get a happy birthday autograph?',
+  };
 
   function onSend() {
     toggleSignModal();
@@ -63,17 +67,17 @@ export default function Sign() {
         <Box mx="0">
           <Text textDecoration="underline">To</Text>
           <Text fontSize="1.25rem" fontWeight="500">
-            John Doe
+            {request.from}
           </Text>
           <Text textDecoration="underline">Message</Text>
           <Text fontSize="1.25rem" fontWeight="500">
-            Can I get a happy birthday autograph?
+            {request.details}
           </Text>
         </Box>
         {/* <Box width="100%" height="100vh" top="10%" left="10%"> */}
 
         <Box
-          backgroundImage={`url(${albumCover})`}
+          backgroundImage={`url(${request.albumCover})`}
           backgroundRepeat="no-repeat"
           backgroundColor="white"
           w="80%"
