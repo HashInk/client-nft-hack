@@ -8,8 +8,8 @@ export const hardCodedCelebs = [
     profession: '',
   },
   {
-    name: faker.name.findName(),
-    image: '',
+    name: 'Steve Aoki',
+    image: '/celebs/steve.jpeg',
     link: '',
     price: 0,
     profession: '',
@@ -51,8 +51,8 @@ export const hardCodedCelebs = [
     profession: '',
   },
   {
-    name: faker.name.findName(),
-    image: '',
+    name: 'Shawn Mendes',
+    image: '/celebs/shawn.jpeg',
     link: '',
     price: 0,
     profession: '',
@@ -66,19 +66,13 @@ export const hardCodedCelebs = [
     profession: '',
   },
   {
-    name: faker.name.findName(),
-    image: '',
+    name: 'Ice T',
+    image: '/celebs/ice.jpeg',
     link: '',
     price: 0,
     profession: '',
   },
-  {
-    name: faker.name.findName(),
-    image: '',
-    link: '',
-    price: 0,
-    profession: '',
-  },
+
   {
     name: 'Jessica VerSteeg',
     image: '/celebs/jessica.jpeg',
@@ -95,22 +89,15 @@ export const hardCodedCelebs = [
   },
 
   {
-    name: faker.name.findName(),
-    image: '',
+    name: 'Dan Castellaneta',
+    image: '/celebs/homer.jpeg',
     link: '',
     price: 0,
     profession: '',
   },
   {
-    name: faker.name.findName(),
-    image: '',
-    link: '',
-    price: 0,
-    profession: '',
-  },
-  {
-    name: faker.name.findName(),
-    image: '',
+    name: 'LeVar Ball',
+    image: '/celebs/levar.jpeg',
     link: '',
     price: 0,
     profession: '',
@@ -130,8 +117,8 @@ export const hardCodedCelebs = [
     profession: '',
   },
   {
-    name: faker.name.findName(),
-    image: '',
+    name: 'Bill Fagerbakke',
+    image: '/celebs/patrick.jpeg',
     link: '',
     price: 0,
     profession: '',

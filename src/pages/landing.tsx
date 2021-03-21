@@ -68,23 +68,6 @@ export default function Landing() {
   ]);
 
   useEffect(() => {
-    let i = 0;
-
-    let tempArr = [];
-    console.log('tempArr:', tempArr);
-    // while (i < 20) {
-    //   const newCeleb = {
-    //     image: '',
-    //     name: faker.name.findName(),
-    //     link: '',
-    //     price: 0,
-    //     profession: '',
-    //   };
-
-    //   tempArr.push(newCeleb);
-    //   i++;
-    //   faker.seed(i);
-    // }
     setCelebrities(celebrities.concat(hardCodedCelebs));
   }, []);
 
