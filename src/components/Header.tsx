@@ -76,6 +76,7 @@ export default function Header() {
         </Text>
       </Link>
       <HStack display={{ base: 'none ', md: 'flex' }}>
+        <Notifications />
         <IconButton
           colorScheme="blue"
           color="white"
@@ -93,8 +94,6 @@ export default function Header() {
           icon={<FiGrid />}
           isDisabled={!account}
         />
-
-        <Notifications />
 
         {!account ? (
           <IconButton

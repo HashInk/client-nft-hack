@@ -21,6 +21,8 @@ import Dialog from './Dialog';
 
 export default function Request() {
   const { requestModalIsOpen, toggleRequestModal } = useStore();
+  const addNotification = useStore((state) => state.addNotification);
+
   const [files, setFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [requestForm, setRequestForm] = useState({
@@ -63,7 +65,7 @@ export default function Request() {
         gasLimit: 210000,
         value: priceForRequest,
       });
-      const res = await tx.wait();
+      await tx.wait();
       console.log('tx:', tx);
       toast({
         title: 'Request success',
@@ -73,8 +75,12 @@ export default function Request() {
         isClosable: true,
       });
 
+      addNotification(tx.hash);
+
       // cookie.remove('token');
       // cookie.set('token', 'ABC', { expires: 1 / 24 });
+
+      toggleRequestModal();
     } catch (error) {
       console.error(error);
       toast({
@@ -88,7 +94,6 @@ export default function Request() {
     // cookie.set('requestForm.to', requestForm.to, { expires: 1 / 24 });
     // cookie.set('requestForm.message', requestForm.message, { expires: 1 / 24 });
     setIsLoading(false);
-    toggleRequestModal();
   }
 
   return (
@@ -96,6 +101,7 @@ export default function Request() {
       isOpen={requestModalIsOpen}
       onClose={toggleRequestModal}
       header="Request"
+      disableClose={isLoading}
       footer={
         <>
           <Button variant="ghost" mr={3} onClick={toggleRequestModal}>

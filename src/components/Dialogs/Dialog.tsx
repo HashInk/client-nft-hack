@@ -23,12 +23,14 @@ export default function Dialog({
   header,
   children,
   footer,
+  disableClose,
 }: {
   isOpen: boolean;
   onClose: () => any;
   header: string;
   children: JSX.Element;
   footer?: JSX.Element;
+  disableClose?: boolean;
 }) {
   const isDesktop = useScreenSize();
 
@@ -37,7 +39,7 @@ export default function Dialog({
       <Drawer isOpen={isOpen} placement="bottom" onClose={onClose}>
         <DrawerOverlay>
           <DrawerContent>
-            <DrawerCloseButton />
+            <DrawerCloseButton isDisabled={disableClose} />
             <DrawerHeader>{header}</DrawerHeader>
             <DrawerBody>{children}</DrawerBody>
             {footer && <DrawerFooter>{footer}</DrawerFooter>}
@@ -48,11 +50,17 @@ export default function Dialog({
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} isCentered>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      isCentered
+      closeOnEsc={!disableClose}
+      closeOnOverlayClick={!disableClose}
+    >
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>{header}</ModalHeader>
-        <ModalCloseButton />
+        <ModalCloseButton isDisabled={disableClose} />
 
         <ModalBody>{children}</ModalBody>
         {footer && <ModalFooter>{footer}</ModalFooter>}
