@@ -58,18 +58,16 @@ export default function Sign() {
 
   async function onSend() {
     setIsLoading(true);
-    pinFileToIPFS(image, {
-      name: request.from,
-    });
+    // pinFileToIPFS(image, {
+    //   name: request.from,
+    // });
 
     try {
-      const requestId = 5;
-      const hash = 'QmfAvnM89JrqvdhLymbU5sXoAukEJygSLk9cJMBPTyrmxo';
+      const requestId = 14;
+      const hash = 'QmUa6jSRGywTfABQUAU2KkKmETvyTfUUvVx9YpeScora9h';
       const URI = `https://ipfs.io/ipfs/${hash}`;
 
-      const tx = await contract.signRequest(requestId, hash, URI, {
-        gasLimit: 210000,
-      });
+      const tx = await contract.signRequest(requestId, hash, URI);
 
       await tx.wait();
       toast({
@@ -79,9 +77,7 @@ export default function Sign() {
         variant: 'top-accent',
         isClosable: true,
       });
-      // cookie.remove('token');
-      // cookie.set('token', 'ABC', { expires: 1 / 24 });
-      toggleSignModal();
+      // toggleSignModal();
     } catch (error) {
       console.error(error);
       toast({
