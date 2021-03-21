@@ -16,6 +16,7 @@ import { FiGrid, FiLogIn, FiMoon, FiSun, FiUser } from 'react-icons/fi';
 
 import useStore from '../store';
 import { shortenAddress } from '../utils';
+import { JustinsAccount } from '../utils/constants';
 import MobileMenu from './MobileMenu';
 import Notifications from './Notifications';
 
@@ -86,6 +87,7 @@ export default function Header() {
           icon={colorMode === 'dark' ? <FiSun /> : <FiMoon />}
         />
         <IconButton
+          display={account === JustinsAccount ? 'none' : 'inline-flex'}
           colorScheme="blue"
           color="white"
           isRound

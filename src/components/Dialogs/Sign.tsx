@@ -30,11 +30,25 @@ export default function Sign() {
   const { signModalIsOpen, toggleSignModal } = useStore();
   const request = {
     albumCover:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Ethereum-icon-purple.svg/440px-Ethereum-icon-purple.svg.png',
-    from: 'John Doe',
-    details: 'Can I get a simple autograph?',
+      'https://imagesvc.meredithcorp.io/v3/mm/image?q=85&c=sc&poi=face&w=612&h=408&url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2016%2F10%2Fharold-berman.jpg',
+    from: 'Brennan',
+    details: 'Can I get an autograph?',
   };
   const toast = useToast();
+  const contract = useContract(
+    addresses.autographRequest,
+    AutographRequest.abi,
+  );
+  const sigRef = useRef(null);
+  const [penColor, setPenColor] = useState('black');
+
+  function onClickUndo() {
+    const data = sigRef.current.toData();
+    if (data) {
+      data.pop();
+      sigRef.current.fromData(data);
+    }
+  }
 
   // const pinata = pinataSDK(
   //   process.env.PINATA_API_KEY,
@@ -52,38 +66,19 @@ export default function Sign() {
   //     console.log(err);
   //   });
 
-  const contract = useContract(
-    addresses.autographRequest,
-    AutographRequest.abi,
-  );
-
-  const sigRef = useRef(null);
-
-  const [imageURL, setImageURL] = useState(null);
-
-  const [penColor, setPenColor] = useState('black');
-
-  function onClickUndo() {
-    const data = sigRef.current.toData();
-
-    if (data) {
-      data.pop();
-      sigRef.current.fromData(data);
-    }
-  }
-  let base64SignatureImage = '';
-
-  async function onSend(event) {
+  async function onSend() {
     try {
-      const requestId = 3;
+      const requestId = 4;
       const hash = 'QmfAvnM89JrqvdhLymbU5sXoAukEJygSLk9cJMBPTyrmxo';
       const URI = `https://ipfs.io/ipfs/${hash}`;
 
-      const tx = await contract.signRequest(requestId, hash, URI);
+      const tx = await contract.signRequest(requestId, hash, URI, {
+        gasLimit: 210000,
+      });
 
       await tx.wait();
       toast({
-        title: 'Sent',
+        title: 'Sent success',
         description: 'Autograph has been successfully minted',
         status: 'success',
         variant: 'top-accent',
@@ -154,7 +149,6 @@ export default function Sign() {
             {request.details}
           </Text>
         </Box>
-        {/* <Box width="100%" height="100vh" top="10%" left="10%"> */}
 
         <Box
           backgroundImage={`url(${request.albumCover})`}

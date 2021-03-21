@@ -77,7 +77,7 @@ export default function UserGallery() {
 
   const celebs = [
     {
-      image: '/justin.jpeg',
+      image: '/celebs/justin.jpeg',
       name: 'Justin Shenkarow',
       profession: 'Actor / Producer',
       signature: '/black-autograph.png',

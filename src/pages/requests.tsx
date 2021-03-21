@@ -8,7 +8,6 @@ import {
   GridItem,
   Text,
 } from '@chakra-ui/react';
-import Cookies from 'cookies';
 import faker from 'faker';
 import { useEffect, useState } from 'react';
 

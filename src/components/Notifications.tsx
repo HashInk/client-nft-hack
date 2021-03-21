@@ -21,7 +21,6 @@ import { getEtherscanLink, shortenAddress } from '../utils';
 
 export default function Notifications() {
   const notifications = useStore((state) => state.notifications);
-  console.log('notifications:', notifications);
   const { chainId } = useWeb3React();
 
   return (
