@@ -2,29 +2,33 @@ import {
   Box,
   Button,
   ButtonGroup,
+  FormControl,
+  FormHelperText,
+  FormLabel,
   HStack,
   IconButton,
+  Input,
   Select,
   Text,
   useToast,
+  VStack,
 } from '@chakra-ui/react';
-import pinataSDK from '@pinata/sdk';
 import getConfig from 'next/config';
 
 import AutographRequest from '../../abis/AutographRequestContract.json';
 import { useContract } from '../../hooks';
 import { addresses } from '../../utils/addresses';
 import { JustinsAccount } from '../../utils/constants';
+import pinFileToIPFS from '../../utils/pin';
 const { publicRuntimeConfig } = getConfig();
 import axios from 'axios';
 import FormData from 'form-data';
 import { ChangeEvent, useRef, useState } from 'react';
+import CanvasDraw from 'react-canvas-draw';
 import { FiRotateCcw, FiX } from 'react-icons/fi';
-import SignaturePad from 'react-signature-canvas';
 
 import useStore from '../../store';
 import Dialog from './Dialog';
-import Upload from './Upload';
 
 export default function Sign() {
   const { signModalIsOpen, toggleSignModal } = useStore();
@@ -39,36 +43,27 @@ export default function Sign() {
     addresses.autographRequest,
     AutographRequest.abi,
   );
-  const sigRef = useRef(null);
+  const canvasRef = useRef();
+  const imageUploader = useRef(null);
   const [penColor, setPenColor] = useState('black');
+  const [isLoading, setIsLoading] = useState(false);
+  const [image, setImage] = useState(null);
 
-  function onClickUndo() {
-    const data = sigRef.current.toData();
-    if (data) {
-      data.pop();
-      sigRef.current.fromData(data);
+  const handleImageUpload = (e) => {
+    const [file] = e.target.files;
+    if (file) {
+      setImage(file);
     }
-  }
-
-  // const pinata = pinataSDK(
-  //   process.env.PINATA_API_KEY,
-  //   process.env.PINATA_API_SECRET,
-  // );
-
-  // pinata
-  //   .testAuthentication()
-  //   .then((result) => {
-  //     //handle successful authentication here
-  //     console.log(result);
-  //   })
-  //   .catch((err) => {
-  //     //handle error here
-  //     console.log(err);
-  //   });
+  };
 
   async function onSend() {
+    setIsLoading(true);
+    pinFileToIPFS(image, {
+      name: request.from,
+    });
+
     try {
-      const requestId = 4;
+      const requestId = 5;
       const hash = 'QmfAvnM89JrqvdhLymbU5sXoAukEJygSLk9cJMBPTyrmxo';
       const URI = `https://ipfs.io/ipfs/${hash}`;
 
@@ -86,6 +81,7 @@ export default function Sign() {
       });
       // cookie.remove('token');
       // cookie.set('token', 'ABC', { expires: 1 / 24 });
+      toggleSignModal();
     } catch (error) {
       console.error(error);
       toast({
@@ -96,30 +92,7 @@ export default function Sign() {
         isClosable: true,
       });
     }
-    // toggleSignModal();
-    // event.preventDefault();
-    // let signature = null;
-
-    //@ts-ignore
-    // if (sigRef.current && !sigRef.current.isEmpty()) {
-    //   signature = {
-    //     //@ts-ignore
-    //     data: sigRef.current.toDataURL().replace('data:image/png;base64,', ''),
-    //     type: 'image/jpeg',
-    //     name: 'photo.jpg',
-    //   };
-
-    //   console.log('signature:', signature);
-    //   //@ts-ignore
-    //   if (sigRef.current && !sigRef.current.isEmpty()) {
-    //     //@ts-ignore
-    //     base64SignatureImage = sigRef.current
-    //       ?.getTrimmedCanvas()
-    //       .toDataURL('image/png');
-
-    //     console.log('base64SignatureImage:', base64SignatureImage);
-    //   }
-    // }
+    setIsLoading(false);
   }
 
   return (
@@ -127,12 +100,13 @@ export default function Sign() {
       isOpen={signModalIsOpen}
       onClose={toggleSignModal}
       header="Reply"
+      disableClose={isLoading}
       footer={
         <>
           <Button variant="ghost" mr={3} onClick={toggleSignModal}>
             Cancel
           </Button>
-          <Button colorScheme="blue" onClick={onSend}>
+          <Button colorScheme="blue" onClick={onSend} isLoading={isLoading}>
             Send
           </Button>
         </>
@@ -150,38 +124,28 @@ export default function Sign() {
           </Text>
         </Box>
 
-        {/* <Upload /> */}
+        <CanvasDraw
+          style={{
+            boxShadow:
+              '0 13px 27px -5px rgba(50, 50, 93, 0.25),    0 8px 16px -8px rgba(0, 0, 0, 0.3)',
+          }}
+          brushColor={penColor}
+          // imgSrc="https://upload.wikimedia.org/wikipedia/commons/a/a1/Nepalese_Mhapuja_Mandala.jpg"
+          hideInterface
+          hideGrid
+          lazyRadius={0}
+          brushRadius={2}
+          ref={canvasRef}
+        />
 
-        <Box
-          backgroundImage={`url(${request.albumCover})`}
-          backgroundRepeat="no-repeat"
-          backgroundColor="white"
-          w="80%"
-          // h="80%"
-          m="1rem auto"
-          borderRadius="10px"
-          boxShadow="md"
-        >
-          <SignaturePad
-            canvasProps={{
-              style: {
-                border: '3px solid gray',
-                borderRadius: '10px',
-                width: '100%',
-                minHeight: '400px',
-              },
-            }}
-            ref={(ref) => (sigRef.current = ref)}
-            penColor={penColor}
-          />
-        </Box>
-        <HStack>
+        <HStack mt="0.5rem">
           <Select
             placeholder="Select option"
             defaultValue={penColor}
             onChange={(e: ChangeEvent<HTMLSelectElement>) =>
               setPenColor(e.target.value)
             }
+            size="sm"
           >
             <option value="red">🔴 Red</option>
             <option value="orange">🟠 Orange</option>
@@ -195,18 +159,31 @@ export default function Sign() {
 
           <ButtonGroup isAttached>
             <IconButton
-              onClick={() => onClickUndo()}
+              //@ts-ignore
+              onClick={() => canvasRef.current.undo()}
               aria-label="undo"
               icon={<FiRotateCcw />}
+              size="sm"
             />
             <IconButton
               //@ts-ignore
-              onClick={() => sigRef.current && sigRef.current.clear()}
+              onClick={() => canvasRef.current.clear()}
               aria-label="clear"
               icon={<FiX />}
+              size="sm"
             />
           </ButtonGroup>
         </HStack>
+        <>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+            ref={imageUploader}
+            // style={{}}
+            className="custom-file-input"
+          />
+        </>
       </>
     </Dialog>
   );
