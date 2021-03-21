@@ -12,6 +12,7 @@ import faker from 'faker';
 import { useEffect, useState } from 'react';
 
 import AutographRequest from '../abis/AutographRequestContract.json';
+import CelebrityProfileComponent from '../components/CelebrityProfileComponent';
 import withPrivateRoute from '../components/withPrivateRoute';
 import { useContract } from '../hooks';
 import useStore from '../store';
@@ -54,8 +55,23 @@ export default function Requests({ token }: { token: any }) {
     );
   }, []);
 
+  const celebrity = {
+    image: '/celebs/justin.jpeg',
+    name: 'Justin Shenkarow',
+    background: 'Actor',
+    price: 1000,
+    ethPrice: 0.1,
+    autograph: '../../assets/white-autograph.png',
+    responseTime: '1 day',
+    numberOfReviews: 10,
+    rating: 4.9,
+    fans: '1.2M',
+  };
+
   return (
     <Container maxW="container.lg" mt="5rem">
+      <CelebrityProfileComponent celebrity={celebrity} />
+      <Divider my={2} />
       <Grid templateColumns="repeat(1, 1fr)" gap={2}>
         {celebs.map((celeb: any, key: number) => (
           <GridItem

@@ -16,7 +16,6 @@ import { useContract } from '../../hooks';
 import { addresses } from '../../utils/addresses';
 import { JustinsAccount } from '../../utils/constants';
 const { publicRuntimeConfig } = getConfig();
-
 import axios from 'axios';
 import FormData from 'form-data';
 import { ChangeEvent, useRef, useState } from 'react';
@@ -25,6 +24,7 @@ import SignaturePad from 'react-signature-canvas';
 
 import useStore from '../../store';
 import Dialog from './Dialog';
+import Upload from './Upload';
 
 export default function Sign() {
   const { signModalIsOpen, toggleSignModal } = useStore();
@@ -149,6 +149,8 @@ export default function Sign() {
             {request.details}
           </Text>
         </Box>
+
+        {/* <Upload /> */}
 
         <Box
           backgroundImage={`url(${request.albumCover})`}
