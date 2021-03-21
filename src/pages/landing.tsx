@@ -13,10 +13,9 @@ import {
   WrapItem,
 } from '@chakra-ui/react';
 import { keyframes } from '@emotion/react';
-import faker from 'faker';
-import image from 'next/image';
 import NextLink from 'next/link';
 import { createRef, useEffect, useState } from 'react';
+import { FiArrowDown } from 'react-icons/fi';
 
 import Footer from '../components/Footer';
 import { toKebabCase } from '../utils';
@@ -139,6 +138,7 @@ export default function Landing() {
                   size="lg"
                   colorScheme="blue"
                   onClick={clickHandler}
+                  leftIcon={<FiArrowDown />}
                 >
                   View Celebrities
                 </Button>

@@ -9,8 +9,6 @@ import Dialog from './Dialog';
 export default function View() {
   const { viewModalIsOpen, toggleViewModal } = useStore();
   const { chainId, account } = useWeb3React();
-  const autographImage =
-    'https://www.instantautographs.com/assets/ia-autograph-ddb0d9e55cf90a6d191a329322c6808d8bc991510b6f7902e377f368f962c8bb.png';
 
   return (
     <Dialog
@@ -38,7 +36,7 @@ export default function View() {
         </>
       }
     >
-      <Img src={autographImage} alt="NFT Image" />
+      <Img src="/black-autograph.png" alt="NFT Image" />
     </Dialog>
   );
 }

@@ -37,6 +37,7 @@
     "react-icons": "^4.2.0",
     "react-signature-canvas": "^1.0.3",
     "swr": "^0.5.4",
+    "tinyurl": "^1.1.7",
     "zustand": "^3.3.3"
   },
   "devDependencies": {

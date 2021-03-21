@@ -7,19 +7,19 @@ import {
   Grid,
   GridItem,
   Heading,
-  HStack,
-  Icon,
-  Img,
+  IconButton,
   Text,
+  useClipboard,
   useColorModeValue,
-  VStack,
 } from '@chakra-ui/react';
 import faker from 'faker';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { FiClipboard, FiPaperclip } from 'react-icons/fi';
+import TinyURL from 'tinyurl';
 
 import useStore from '../store';
-import { toKebabCase } from '../utils';
 
 function AutographCard({
   celeb,
@@ -50,8 +50,10 @@ function AutographCard({
           shadow="base"
           p="40px"
           mt="1rem"
-          onClick={() => toggleViewModal()}
-          cursor="pointer"
+          onClick={
+            celeb.name === 'Justin Shenkarow' ? () => toggleViewModal() : null
+          }
+          cursor={celeb.name === 'Justin Shenkarow' ? 'pointer' : 'default'}
         >
           <Image
             src={celeb.signature ? celeb.signature : '/black-autograph.png'}
@@ -67,6 +69,9 @@ function AutographCard({
 
 export default function UserGallery() {
   const { toggleViewModal } = useStore();
+  const [tinyURL, setTinyURL] = useState('');
+  const { hasCopied, onCopy } = useClipboard(tinyURL);
+  const router = useRouter();
 
   const celebs = [
     {
@@ -98,6 +103,15 @@ export default function UserGallery() {
     },
   ];
 
+  useEffect(() => {
+    if (router.route) {
+      TinyURL.shorten(router.route, (res: any, err: any) => {
+        if (err) console.error(err);
+        else setTinyURL(res);
+      });
+    }
+  }, [router]);
+
   return (
     <Box bg={useColorModeValue('gray.50', 'gray.900')}>
       <Container py="120px" maxW="1280px">
@@ -106,8 +120,16 @@ export default function UserGallery() {
             My autograph gallery 🖼
           </chakra.h2>
           <chakra.p opacity={0.7} fontSize="1.125rem">
-            View and share all of your recently collected signatures
+            View and share all of your recently collected signatures:
           </chakra.p>
+          <Text>{tinyURL}</Text>
+          <IconButton
+            icon={hasCopied ? <FiClipboard /> : <FiPaperclip />}
+            onClick={onCopy}
+            ml={2}
+            aria-label="copy"
+            size="xs"
+          />
         </Box>
 
         <Grid
