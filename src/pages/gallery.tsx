@@ -29,7 +29,7 @@ function AutographCard({
   toggleViewModal: () => any;
 }) {
   return (
-    <Flex filter={celeb.name !== 'Justin Shenkarow' && 'blur(8px)'}>
+    <Flex>
       <Box
         bg={useColorModeValue('white', 'gray.700')}
         rounded="12px"
@@ -54,7 +54,7 @@ function AutographCard({
           cursor="pointer"
         >
           <Image
-            src="/black-autograph.png"
+            src={celeb.signature ? celeb.signature : '/black-autograph.png'}
             alt="autograph"
             width="448"
             height="200"
@@ -68,37 +68,35 @@ function AutographCard({
 export default function UserGallery() {
   const { toggleViewModal } = useStore();
 
-  const [celebs, setCelebs] = useState([
+  const celebs = [
     {
       image: '/justin.jpeg',
       name: 'Justin Shenkarow',
-      link: 'justin-shenkarow',
-      price: 1000,
       profession: 'Actor / Producer',
-      autograph:
-        'https://www.instantautographs.com/assets/ia-autograph-ddb0d9e55cf90a6d191a329322c6808d8bc991510b6f7902e377f368f962c8bb.png',
+      signature: '/black-autograph.png',
     },
-  ]);
-  useEffect(() => {
-    let i = 0;
-
-    let tempArr = [];
-    console.log('tempArr:', tempArr);
-    while (i < 3) {
-      const newCeleb = {
-        image: '',
-        name: faker.name.findName(),
-        link: '',
-        price: 0,
-        profession: 'Actor / Producer',
-      };
-
-      tempArr.push(newCeleb);
-      i++;
-      faker.seed(i);
-    }
-    setCelebs(celebs.concat(tempArr));
-  }, []);
+    {
+      image: '',
+      name: faker.name.findName(),
+      price: 0,
+      profession: 'Actor / Producer',
+      signature: '/auto1.png',
+    },
+    {
+      image: '',
+      name: faker.name.findName(),
+      price: 0,
+      profession: 'Musician',
+      signature: '/auto2.png',
+    },
+    {
+      image: '',
+      name: faker.name.findName(),
+      price: 0,
+      profession: 'YouTuber',
+      signature: '/auto3.png',
+    },
+  ];
 
   return (
     <Box bg={useColorModeValue('gray.50', 'gray.900')}>
