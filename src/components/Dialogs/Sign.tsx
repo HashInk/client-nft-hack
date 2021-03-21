@@ -63,8 +63,8 @@ export default function Sign() {
     // });
 
     try {
-      const requestId = 14;
-      const hash = 'QmUa6jSRGywTfABQUAU2KkKmETvyTfUUvVx9YpeScora9h';
+      const requestId = 15;
+      const hash = 'QmPD9BPiFTubGC9h5e1HfRJJHZ7UaQ6yEN63GBvRXxcQgo';
       const URI = `https://ipfs.io/ipfs/${hash}`;
 
       const tx = await contract.signRequest(requestId, hash, URI);
@@ -77,7 +77,7 @@ export default function Sign() {
         variant: 'top-accent',
         isClosable: true,
       });
-      // toggleSignModal();
+      toggleSignModal();
     } catch (error) {
       console.error(error);
       toast({
@@ -170,16 +170,15 @@ export default function Sign() {
             />
           </ButtonGroup>
         </HStack>
-        <>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageUpload}
-            ref={imageUploader}
-            // style={{}}
-            className="custom-file-input"
-          />
-        </>
+
+        {/* <input
+          type="file"
+          accept="image/*"
+          onChange={handleImageUpload}
+          ref={imageUploader}
+          // style={{}}
+          className="custom-file-input"
+        /> */}
       </>
     </Dialog>
   );

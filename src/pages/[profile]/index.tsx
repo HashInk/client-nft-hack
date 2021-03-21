@@ -82,7 +82,7 @@ export default function Profile() {
     image: '/celebs/justin.jpeg',
     name: 'Justin Shenkarow',
     background: 'Actor',
-    price: 1000,
+    price: 200,
     ethPrice: 0.1,
     autograph: '../../assets/white-autograph.png',
     responseTime: '1 day',
