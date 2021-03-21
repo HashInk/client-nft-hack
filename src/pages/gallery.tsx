@@ -71,7 +71,7 @@ function AutographCard({
 
 export default function UserGallery() {
   const { toggleViewModal } = useStore();
-  const [tinyURL, setTinyURL] = useState('');
+  const [tinyURL, setTinyURL] = useState('https://hashink.vercel.app/gallery');
   const { hasCopied, onCopy } = useClipboard(tinyURL);
   const router = useRouter();
 

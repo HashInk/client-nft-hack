@@ -19,7 +19,7 @@ import { addresses } from '../../utils/addresses';
 import { JustinsAccount } from '../../utils/constants';
 import Dialog from './Dialog';
 
-export default function Request({ token }: { token: any }) {
+export default function Request() {
   const { requestModalIsOpen, toggleRequestModal } = useStore();
   const [files, setFiles] = useState([]);
   const [requestForm, setRequestForm] = useState({
