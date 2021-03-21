@@ -63,11 +63,16 @@ export default function Sign() {
     // });
 
     try {
-      const requestId = 16;
+      const requestId = 17;
       const hash = 'QmPD9BPiFTubGC9h5e1HfRJJHZ7UaQ6yEN63GBvRXxcQgo';
       const URI = `https://ipfs.io/ipfs/${hash}`;
 
-      const tx = await contract.signRequest(requestId, hash, URI);
+      // const tx = await contract.signRequest(requestId, hash, URI);
+      // or with 'gasLimit'
+
+      const tx = await contract.signRequest(requestId, hash, URI, {
+        gasLimit: 300000,
+      });
 
       await tx.wait();
       toast({
