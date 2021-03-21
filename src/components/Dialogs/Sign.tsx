@@ -86,7 +86,7 @@ export default function Sign() {
         title: 'Sent',
         description: 'Autograph has been successfully minted',
         status: 'success',
-        variant: 'subtle',
+        variant: 'top-accent',
         isClosable: true,
       });
       // cookie.remove('token');
@@ -97,7 +97,7 @@ export default function Sign() {
         title: 'Signature failed',
         description: 'Please try again',
         status: 'error',
-        variant: 'subtle',
+        variant: 'top-accent',
         isClosable: true,
       });
     }

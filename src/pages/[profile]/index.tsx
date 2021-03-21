@@ -24,7 +24,7 @@ import {
 } from '@chakra-ui/react';
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
-import { useRouter } from 'next/router';
+import { constants } from 'ethers';
 
 import useStore from '../../store';
 
@@ -77,20 +77,20 @@ const StyledBox = styled(Center)`
 
 export default function Profile() {
   const { toggleRequestModal } = useStore();
-  const router = useRouter();
-  const { id, comment } = router.query;
 
   const celebrity = {
-    image: '/justin.jpeg',
+    image: '/celebs/justin.jpeg',
     name: 'Justin Shenkarow',
     background: 'Actor',
     price: 1000,
+    ethPrice: 0.1,
     autograph: '../../assets/white-autograph.png',
     responseTime: '1 day',
     numberOfReviews: 10,
     rating: 4.9,
     fans: '1.2M',
   };
+
   return (
     <Box>
       <Box pt={{ base: '6rem', md: '8rem' }} pb={{ base: '0', md: '5rem' }}>
@@ -124,7 +124,8 @@ export default function Profile() {
                   </Text>
 
                   <Text fontSize="1.5rem" fontWeight="400" color="gray" mt="0">
-                    {celebrity.background} - ${celebrity.price}
+                    {celebrity.background} - ${celebrity.price} /{' '}
+                    {constants.EtherSymbol} {celebrity.ethPrice}
                   </Text>
                 </Flex>
               </Flex>

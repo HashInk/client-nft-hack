@@ -30,35 +30,35 @@ const shine = keyframes`
 export default function Landing() {
   const [celebrities, setCelebrities] = useState([
     {
-      image: '/justin.jpeg',
+      image: '/celebs/justin.jpeg',
       name: 'Justin Shenkarow',
       link: 'justin-shenkarow',
       price: 1000,
       profession: 'Actor / Producer',
     },
     {
-      image: '/grimes.jpeg',
+      image: '/celebs/grimes.jpeg',
       name: 'Grimes',
       link: 'grimes',
       price: 250,
       profession: 'Musician / Songwriter',
     },
     {
-      image: '/logan.jpeg',
+      image: '/celebs/logan.jpeg',
       name: 'Logan Paul',
       link: 'logan-paul',
       price: 100,
       profession: 'YouTuber / Actor / Influencer,',
     },
     {
-      image: '/lindsay.jpeg',
+      image: '/celebs/lindsay.jpeg',
       name: 'Lindsay Lohan Cerny',
       link: 'lindsay-lohan',
       price: 200,
       profession: 'Actress',
     },
     {
-      image: '/3lau.jpeg',
+      image: '/celebs/3lau.jpeg',
       name: '3LAU',
       link: '3lau',
       price: 60,
@@ -182,7 +182,8 @@ export default function Landing() {
               <Text fontSize="lg" opacity={0.7}>
                 From YouTubers and Instagram stars, Athletes, Musicians, and
                 Comedians, and ofcourse, your favorite Crypto voices......
-                HashInk is the best way to get close to your favorite icons ✍️
+                HashInk provides an excellent way for you to get closer to your
+                icons ✍️
               </Text>
             </Box>
 

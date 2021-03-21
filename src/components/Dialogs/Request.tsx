@@ -22,11 +22,13 @@ import Dialog from './Dialog';
 export default function Request() {
   const { requestModalIsOpen, toggleRequestModal } = useStore();
   const [files, setFiles] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [requestForm, setRequestForm] = useState({
     to: '',
     message: '',
   });
   const toast = useToast();
+  const priceForRequest = '100000000000000000';
 
   const contract = useContract(
     addresses.autographRequest,
@@ -56,21 +58,21 @@ export default function Request() {
 
   async function onSend() {
     try {
-      console.log('contract:', contract);
-
+      setIsLoading(true);
       const tx = await contract.createRequest(JustinsAccount, {
         gasLimit: 210000,
-        value: '100000000000000000',
+        value: priceForRequest,
       });
       const res = await tx.wait();
       console.log('tx:', tx);
       toast({
-        title: 'Request sent',
-        description: 'Autograph pending...',
+        title: 'Request success',
+        description: 'Autograph request has been sent',
         status: 'success',
-        variant: 'subtle',
+        variant: 'top-accent',
         isClosable: true,
       });
+
       // cookie.remove('token');
       // cookie.set('token', 'ABC', { expires: 1 / 24 });
     } catch (error) {
@@ -79,39 +81,16 @@ export default function Request() {
         title: 'Request failed',
         description: 'Please try again',
         status: 'error',
-        variant: 'subtle',
+        variant: 'top-accent',
         isClosable: true,
       });
     }
     // cookie.set('requestForm.to', requestForm.to, { expires: 1 / 24 });
     // cookie.set('requestForm.message', requestForm.message, { expires: 1 / 24 });
-
+    setIsLoading(false);
     toggleRequestModal();
   }
 
-  // async function onSend() {
-  //   console.log('contract:', contract);
-  //   try {
-
-  //     toast({
-  //       title: 'Request sent',
-  //       description: 'Autograph pending...',
-  //       status: 'success',
-  //       variant: 'subtle',
-  //       isClosable: true,
-  //     });
-  //   } catch (error) {
-  //     console.error(error);
-  //     toast({
-  //       title: 'Request failed',
-  //       description: "Please",
-  //       status: 'error',
-  //       variant: 'subtle',
-  //       isClosable: true,
-  //     });
-  //   }
-  //   // toggleRequestModal();
-  // }
   return (
     <Dialog
       isOpen={requestModalIsOpen}
@@ -126,6 +105,7 @@ export default function Request() {
             colorScheme="blue"
             onClick={onSend}
             isDisabled={requestForm.to === '' || requestForm.message === ''}
+            isLoading={isLoading}
           >
             Send
           </Button>

@@ -85,34 +85,31 @@ export default function UserGallery() {
     {
       image: '',
       name: faker.name.findName(),
-      price: 0,
       profession: 'Actor / Producer',
       signature: '/auto1.png',
     },
     {
       image: '',
       name: faker.name.findName(),
-      price: 0,
       profession: 'Musician',
-      signature: '/auto2.png',
+      signature: '/auto4.png',
     },
     {
       image: '',
       name: faker.name.findName(),
-      price: 0,
       profession: 'YouTuber',
       signature: '/auto3.png',
     },
   ];
 
-  useEffect(() => {
-    if (router.route) {
-      TinyURL.shorten(router.route, (res: any, err: any) => {
-        if (err) console.error(err);
-        else setTinyURL(res);
-      });
-    }
-  }, [router]);
+  // useEffect(() => {
+  //   if (router.route) {
+  //     TinyURL.shorten(router.route, (res: any, err: any) => {
+  //       if (err) console.error(err);
+  //       else setTinyURL(res);
+  //     });
+  //   }
+  // }, [router]);
 
   return (
     <Box bg={useColorModeValue('gray.50', 'gray.900')}>
@@ -122,14 +119,14 @@ export default function UserGallery() {
             My autograph gallery 🖼
           </chakra.h2>
           <chakra.p opacity={0.7} fontSize="1.125rem">
-            View and share all of your recently collected signatures: {tinyURL}{' '}
+            View and share all of your recently collected signatures:{' '}
+            <chakra.span textDecoration="underline">{tinyURL}</chakra.span>{' '}
             <IconButton
               icon={hasCopied ? <FiClipboard /> : <FiPaperclip />}
               onClick={onCopy}
               ml={2}
               aria-label="copy"
               size="xs"
-              isDisabled
             />
           </chakra.p>
         </Box>
