@@ -122,7 +122,7 @@ export default function Request() {
         <FormControl id="name" isRequired>
           <FormLabel>To</FormLabel>
           <Input
-            type="email"
+            type="text"
             placeholder="Name"
             value={requestForm.to}
             onChange={(e: any) =>
@@ -137,7 +137,7 @@ export default function Request() {
           <FormLabel>Message</FormLabel>
           <Input
             type="text"
-            placeholder="Can I get a happy birthday for my mom (Jill)?"
+            placeholder="Today is my birthday"
             value={requestForm.message}
             onChange={(e: any) =>
               setRequestForm({
