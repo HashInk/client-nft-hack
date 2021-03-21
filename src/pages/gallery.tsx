@@ -7,10 +7,12 @@ import {
   Grid,
   GridItem,
   Heading,
+  HStack,
   IconButton,
   Text,
   useClipboard,
   useColorModeValue,
+  VStack,
 } from '@chakra-ui/react';
 import faker from 'faker';
 import Image from 'next/image';
@@ -120,16 +122,16 @@ export default function UserGallery() {
             My autograph gallery 🖼
           </chakra.h2>
           <chakra.p opacity={0.7} fontSize="1.125rem">
-            View and share all of your recently collected signatures:
+            View and share all of your recently collected signatures: {tinyURL}{' '}
+            <IconButton
+              icon={hasCopied ? <FiClipboard /> : <FiPaperclip />}
+              onClick={onCopy}
+              ml={2}
+              aria-label="copy"
+              size="xs"
+              isDisabled
+            />
           </chakra.p>
-          <Text>{tinyURL}</Text>
-          <IconButton
-            icon={hasCopied ? <FiClipboard /> : <FiPaperclip />}
-            onClick={onCopy}
-            ml={2}
-            aria-label="copy"
-            size="xs"
-          />
         </Box>
 
         <Grid
