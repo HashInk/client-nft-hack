@@ -1,4 +1,5 @@
 import { AspectRatio } from '@chakra-ui/react';
+import ReactPlayer from 'react-player';
 
 import useStore from '../../store';
 import Dialog from './Dialog';
@@ -13,11 +14,12 @@ export default function Video() {
       header="NFT Hack Finale"
     >
       <AspectRatio maxW="500px" ratio={1}>
-        <iframe
+        {/* <iframe
           title="NFTHack Finale"
-          src="https://youtu.be/dPa3UsuTAsw?t=2027"
+          src=""
           allowFullScreen
-        />
+        /> */}
+        <ReactPlayer width="400px" url="https://youtu.be/dPa3UsuTAsw" />
       </AspectRatio>
     </Dialog>
   );
