@@ -2,9 +2,6 @@ import {
   Box,
   Button,
   ButtonGroup,
-  FormControl,
-  FormHelperText,
-  FormLabel,
   HStack,
   IconButton,
   Input,
@@ -13,21 +10,16 @@ import {
   useToast,
   VStack,
 } from '@chakra-ui/react';
-import getConfig from 'next/config';
-
-import AutographRequest from '../../abis/AutographRequestContract.json';
-import { useContract } from '../../hooks';
-import { addresses } from '../../utils/addresses';
-import { JustinsAccount } from '../../utils/constants';
-import pinFileToIPFS from '../../utils/pin';
-const { publicRuntimeConfig } = getConfig();
-import axios from 'axios';
-import FormData from 'form-data';
 import { ChangeEvent, useRef, useState } from 'react';
 import CanvasDraw from 'react-canvas-draw';
 import { FiRotateCcw, FiX } from 'react-icons/fi';
 
+import AutographRequest from '../../abis/AutographRequestContract.json';
+import { useContract } from '../../hooks';
 import useStore from '../../store';
+import { addresses } from '../../utils/addresses';
+import { JustinsAccount } from '../../utils/constants';
+import pinFileToIPFS from '../../utils/pin';
 import Dialog from './Dialog';
 
 export default function Sign() {

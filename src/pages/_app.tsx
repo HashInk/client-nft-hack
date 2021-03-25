@@ -30,7 +30,7 @@ function FunctionalApp({
 
   return !painted ? null : (
     <Layout>
-      {error ? (
+      {/* {error ? (
         <Error />
       ) : typeof requiredChainId === 'number' && chainId !== requiredChainId ? (
         <Flex
@@ -47,9 +47,9 @@ function FunctionalApp({
             </Text>
           </VStack>
         </Flex>
-      ) : (
-        <Component />
-      )}
+      ) : ( */}
+      <Component />
+      {/* )} */}
     </Layout>
   );
 }

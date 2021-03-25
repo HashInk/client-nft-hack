@@ -7,6 +7,8 @@ type Store = {
   requestModalIsOpen: boolean;
   viewModalIsOpen: boolean;
   enrollModalIsOpen: boolean;
+  videoModalIsOpen: boolean;
+  toggleVideoModal(): void;
   toggleWalletModal(): void;
   toggleSignModal(): void;
   toggleRequestModal(): void;
@@ -22,6 +24,9 @@ const useStore = create<Store>((set) => ({
   requestModalIsOpen: false,
   viewModalIsOpen: false,
   enrollModalIsOpen: false,
+  videoModalIsOpen: false,
+  toggleVideoModal: () =>
+    set((state) => ({ videoModalIsOpen: !state.videoModalIsOpen })),
   toggleWalletModal: () =>
     set((state) => ({ walletModalIsOpen: !state.walletModalIsOpen })),
   toggleSignModal: () =>

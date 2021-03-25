@@ -25,8 +25,8 @@ import {
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import CelebrityProfileComponent from '../../components/CelebrityProfileComponent';
-import useStore from '../../store';
+import CelebrityProfileComponent from '../../../components/CelebrityProfileComponent';
+import useStore from '../../../store';
 
 const gradient = keyframes`
   0% {

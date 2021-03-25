@@ -21,30 +21,30 @@ import MobileMenu from './MobileMenu';
 import Notifications from './Notifications';
 
 export default function Header() {
-  const { library, chainId, account } = useWeb3React();
-  const router = useRouter();
+  // const { library, chainId, account } = useWeb3React();
+  // const router = useRouter();
   const { colorMode, toggleColorMode } = useColorMode();
-  const [ENSName, setENSName] = useState('');
-  const { toggleWalletModal, toggleEnrollModal } = useStore();
+  // const [ENSName, setENSName] = useState('');
+  // const { toggleWalletModal, toggleEnrollModal } = useStore();
 
-  useEffect(() => {
-    if (library && account) {
-      let stale = false;
-      library
-        .lookupAddress(account)
-        .then((name: string) => {
-          if (!stale && typeof name === 'string') {
-            if (name.length > 12) setENSName(name.substr(0, 8) + '...');
-            else setENSName(name);
-          }
-        })
-        .catch(() => {}); // eslint-disable-line
-      return (): void => {
-        stale = true;
-        setENSName('');
-      };
-    }
-  }, [library, account, chainId]);
+  // useEffect(() => {
+  //   if (library && account) {
+  //     let stale = false;
+  //     library
+  //       .lookupAddress(account)
+  //       .then((name: string) => {
+  //         if (!stale && typeof name === 'string') {
+  //           if (name.length > 12) setENSName(name.substr(0, 8) + '...');
+  //           else setENSName(name);
+  //         }
+  //       })
+  //       .catch(() => {}); // eslint-disable-line
+  //     return (): void => {
+  //       stale = true;
+  //       setENSName('');
+  //     };
+  //   }
+  // }, [library, account, chainId]);
 
   return (
     <Flex
@@ -65,8 +65,8 @@ export default function Header() {
       bgColor={useColorModeValue('white', '#e6007a')}
     >
       <Link
-        onClick={() => router.push('/')}
-        _hover={{ textDecoration: 'none' }}
+      // onClick={() => router.push('/')}
+      // _hover={{ textDecoration: 'none' }}
       >
         <Text
           fontSize="2rem"
@@ -77,7 +77,7 @@ export default function Header() {
         </Text>
       </Link>
       <HStack display={{ base: 'none ', md: 'flex' }}>
-        <Notifications />
+        {/* <Notifications /> */}
         <IconButton
           colorScheme="blue"
           color="white"
@@ -86,7 +86,7 @@ export default function Header() {
           aria-label="toggle theme"
           icon={colorMode === 'dark' ? <FiSun /> : <FiMoon />}
         />
-        <IconButton
+        {/* <IconButton
           display={account === JustinsAccount ? 'none' : 'inline-flex'}
           colorScheme="blue"
           color="white"
@@ -95,9 +95,9 @@ export default function Header() {
           onClick={() => router.push('/gallery')}
           icon={<FiGrid />}
           isDisabled={!account}
-        />
+        /> */}
 
-        {!account ? (
+        {/* {!account ? (
           <IconButton
             isRound
             colorScheme="blue"
@@ -115,15 +115,15 @@ export default function Header() {
           >
             {ENSName || `${shortenAddress(account)}`}
           </Button>
-        )}
-        <Button
+        )} */}
+        {/* <Button
           display={account ? 'none' : 'block'}
           onClick={() => toggleEnrollModal()}
           color="white"
           colorScheme="blue"
         >
           Enroll
-        </Button>
+        </Button> */}
       </HStack>
       <HStack display={{ base: 'block', md: 'none' }}>
         <IconButton
@@ -131,7 +131,7 @@ export default function Header() {
           colorScheme="blue"
           color="white"
           icon={<FiUser />}
-          onClick={() => toggleWalletModal()}
+          // onClick={() => toggleWalletModal()}
           aria-label="account"
         />
         <MobileMenu />

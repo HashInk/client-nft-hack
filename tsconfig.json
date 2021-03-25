@@ -22,7 +22,11 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "worker/index.js"
+    "worker/index.js",
+    "src/pages/celebrity.txt",
+    "src/pages/gallery.txt",
+    "src/pages/requests.txt",
+    "src/pages/landing.txt"
   ],
   "exclude": [
     "node_modules"

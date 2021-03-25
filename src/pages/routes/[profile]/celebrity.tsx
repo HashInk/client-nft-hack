@@ -72,9 +72,9 @@ import { Box, Container, Grid, GridItem } from '@chakra-ui/react';
 import faker from 'faker';
 import { useEffect, useState } from 'react';
 
-import withPrivateRoute from '../components/withPrivateRoute';
-import useStore from '../store';
-import { toKebabCase } from '../utils';
+import withPrivateRoute from '../../../components/withPrivateRoute';
+import useStore from '../../../store';
+import { toKebabCase } from '../../../utils';
 
 export default function Profile() {
   const { toggleSignModal } = useStore();
