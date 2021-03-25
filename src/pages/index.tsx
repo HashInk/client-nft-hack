@@ -132,7 +132,7 @@ export default function Landing() {
                 <chakra.span
                   animation={`${shine} 10s ease-in-out infinite`}
                   backgroundSize="200% auto"
-                  bgGradient="linear(to-l, #7928CA,#FF0080, #7928CA)"
+                  bgGradient="linear(to-l, #7928CA, #FF0080, #7928CA)"
                   bgClip="text"
                   fontSize={{ base: '2.25rem', sm: '3rem', lg: '4rem' }}
                   fontWeight="extrabold"

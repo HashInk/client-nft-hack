@@ -11,15 +11,13 @@ export default function Video() {
     <Dialog
       isOpen={videoModalIsOpen}
       onClose={toggleVideoModal}
-      header="NFT Hack Finale"
+      header="NFT Hack Finale Video"
     >
       <AspectRatio maxW="500px" ratio={1}>
-        {/* <iframe
-          title="NFTHack Finale"
-          src=""
-          allowFullScreen
-        /> */}
-        <ReactPlayer width="400px" url="https://youtu.be/dPa3UsuTAsw" />
+        <ReactPlayer
+          width="400px"
+          url="https://www.youtube.com/watch?v=SDRL909UsZQ"
+        />
       </AspectRatio>
     </Dialog>
   );

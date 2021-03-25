@@ -9,6 +9,7 @@ import {
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { keyframes } from '@emotion/react';
 import { useWeb3React } from '@web3-react/core';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -19,6 +20,12 @@ import { shortenAddress } from '../utils';
 import { JustinsAccount } from '../utils/constants';
 import MobileMenu from './MobileMenu';
 import Notifications from './Notifications';
+
+const shine = keyframes`
+  to {
+    background-position: 200% center;
+  }
+`;
 
 export default function Header() {
   // const { library, chainId, account } = useWeb3React();
@@ -49,8 +56,8 @@ export default function Header() {
   return (
     <Flex
       alignItems="center"
+      direction="column"
       justifyContent="space-between"
-      px={['0.5rem', '0.5rem', '1rem']}
       zIndex="5"
       minH="3.5rem"
       h="3.5rem"
@@ -61,12 +68,21 @@ export default function Header() {
       w="100%"
       boxShadow="rgba(0, 0, 0, 0.15) 0px 2px 8px"
       as="header"
-      borderTop="6px solid #e6007a"
+      // borderTop="6px solid #e6007a"
       bgColor={useColorModeValue('white', '#e6007a')}
     >
-      <Link
-      // onClick={() => router.push('/')}
-      // _hover={{ textDecoration: 'none' }}
+      <Box
+        w="100%"
+        h="1rem"
+        animation={`${shine} 10s ease-in-out infinite`}
+        backgroundSize="200% auto"
+        bgGradient="linear(to-l, #7928CA, #FF0080, #7928CA)"
+      />
+      <HStack
+        alignItems="center"
+        justify="space-between"
+        w="100%"
+        px={['0.5rem', '0.5rem', '1rem']}
       >
         <Text
           fontSize="2rem"
@@ -74,10 +90,7 @@ export default function Header() {
           color={useColorModeValue('black', 'white')}
         >
           🔏 HashInk
-        </Text>
-      </Link>
-      <HStack display={{ base: 'none ', md: 'flex' }}>
-        {/* <Notifications /> */}
+        </Text>{' '}
         <IconButton
           colorScheme="blue"
           color="white"
@@ -86,7 +99,18 @@ export default function Header() {
           aria-label="toggle theme"
           icon={colorMode === 'dark' ? <FiSun /> : <FiMoon />}
         />
-        {/* <IconButton
+      </HStack>
+      {/* <HStack display={{ base: 'none ', md: 'flex' }}> */}
+      {/* <Notifications /> */}
+      {/* <IconButton
+          colorScheme="blue"
+          color="white"
+          isRound
+          onClick={toggleColorMode}
+          aria-label="toggle theme"
+          icon={colorMode === 'dark' ? <FiSun /> : <FiMoon />}
+        /> */}
+      {/* <IconButton
           display={account === JustinsAccount ? 'none' : 'inline-flex'}
           colorScheme="blue"
           color="white"
@@ -96,8 +120,7 @@ export default function Header() {
           icon={<FiGrid />}
           isDisabled={!account}
         /> */}
-
-        {/* {!account ? (
+      {/* {!account ? (
           <IconButton
             isRound
             colorScheme="blue"
@@ -116,7 +139,7 @@ export default function Header() {
             {ENSName || `${shortenAddress(account)}`}
           </Button>
         )} */}
-        {/* <Button
+      {/* <Button
           display={account ? 'none' : 'block'}
           onClick={() => toggleEnrollModal()}
           color="white"
@@ -124,8 +147,8 @@ export default function Header() {
         >
           Enroll
         </Button> */}
-      </HStack>
-      <HStack display={{ base: 'block', md: 'none' }}>
+      {/* </HStack> */}
+      {/* <HStack display={{ base: 'block', md: 'none' }}>
         <IconButton
           isRound
           colorScheme="blue"
@@ -135,7 +158,7 @@ export default function Header() {
           aria-label="account"
         />
         <MobileMenu />
-      </HStack>
+      </HStack> */}
     </Flex>
   );
 }
