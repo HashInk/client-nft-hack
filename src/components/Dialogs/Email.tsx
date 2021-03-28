@@ -3,6 +3,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  useToast,
   VStack,
 } from '@chakra-ui/react';
 import axios from 'axios';
@@ -15,16 +16,32 @@ import Dialog from './Dialog';
 export default function Email() {
   const { emailModalIsOpen, toggleEmailModal } = useStore();
   const [emailAddress, setEmailAddress] = useState('');
+  const toast = useToast();
 
   const [isDisabled, setIsDisabled] = useState(true);
 
   const subscribe = async () => {
     try {
-      const response = await axios.post('/api/newsletter', {
+      await axios.post('/api/newsletter', {
         emailAddress,
       });
+      toast({
+        title: 'Subscribed!',
+        description: "We'll be sure to keep you in the loop",
+        status: 'success',
+        variant: 'subtle',
+        isClosable: true,
+      });
+      toggleEmailModal();
     } catch (e) {
       console.error(e);
+      toast({
+        title: 'Error',
+        description: 'Please try again',
+        status: 'error',
+        variant: 'subtle',
+        isClosable: true,
+      });
     }
   };
 
@@ -42,7 +59,7 @@ export default function Email() {
             colorScheme="blue"
             onClick={() => subscribe()}
             // isDisabled={}
-            isDisabled={!emailAddress || isDisabled}
+            // isDisabled={!emailAddress || isDisabled}
           >
             Submit
           </Button>

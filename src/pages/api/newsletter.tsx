@@ -7,11 +7,10 @@ mailchimp.setConfig({
 });
 
 export default async (req: any, res: any) => {
-  const { emailAddress, name } = req.body;
+  const { emailAddress } = req.body;
 
   try {
     await mailchimp.lists.addListMember('ba6c013bf9', {
-      first_name: name,
       email_address: emailAddress,
       status: 'subscribed',
     });
