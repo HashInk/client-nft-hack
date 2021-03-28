@@ -15,7 +15,7 @@ import {
   ModalOverlay,
 } from '@chakra-ui/react';
 
-import { useScreenSize } from '../../hooks';
+import useScreenSize from '../../hooks';
 
 export default function Dialog({
   isOpen,
