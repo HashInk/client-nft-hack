@@ -58,8 +58,7 @@ export default function Email() {
           <Button
             colorScheme="blue"
             onClick={() => subscribe()}
-            // isDisabled={}
-            // isDisabled={!emailAddress || isDisabled}
+            isDisabled={!emailAddress || isDisabled}
           >
             Submit
           </Button>
@@ -79,6 +78,7 @@ export default function Email() {
         <ReCAPTCHA
           sitekey="6LfioJIaAAAAAC-gG7dzsL2BGRiMBVM-FbIZx-Lu"
           onChange={() => setIsDisabled(false)}
+          size="compact"
         />
       </VStack>
     </Dialog>
