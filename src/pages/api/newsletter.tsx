@@ -1,3 +1,4 @@
+//@ts-ignore
 import mailchimp from '@mailchimp/mailchimp_marketing';
 
 mailchimp.setConfig({
