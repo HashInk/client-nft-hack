@@ -47,7 +47,7 @@ export default function Landing() {
             maxW="560px"
             mx="auto"
             opacity={0.7}
-            fontSize={{ base: 'lg', lg: 'xl' }}
+            fontSize={{ base: '1.125rem', lg: '1.25rem' }}
             mt="6"
           >
             HashInk provides NFT autographs, with royalty perks for providers

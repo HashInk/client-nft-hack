@@ -10,6 +10,8 @@ import {
 import { keyframes } from '@emotion/react';
 import { FiMoon, FiSun } from 'react-icons/fi';
 
+import Logo from './Logo';
+
 const shine = keyframes`
   to {
     background-position: 200% center;
@@ -34,11 +36,11 @@ export default function Header() {
       w="100%"
       boxShadow="rgba(0, 0, 0, 0.15) 0px 2px 8px"
       as="header"
-      bgColor={useColorModeValue('white', '#e6007a')}
+      // bgColor={useColorModeValue('white', '#e6007a')}
     >
       <Box
         w="100%"
-        h="1rem"
+        h="0.5rem"
         animation={`${shine} 10s ease-in-out infinite`}
         backgroundSize="200% auto"
         bgGradient="linear(to-l, #7928CA, #FF0080, #7928CA)"
@@ -49,6 +51,7 @@ export default function Header() {
         w="100%"
         px={['0.5rem', '0.5rem', '1rem']}
       >
+        {/* <Logo /> */}
         <Text
           fontSize="2rem"
           fontWeight="600"
